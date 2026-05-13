@@ -4,7 +4,7 @@
 
 Compact terminal-feed renderer for the `news` response type. Bloomberg/newswire aesthetic: dense article cards, text-only (no images), restrained sentiment visualization. Each article is a two-zone compact card. Summaries are collapsed by default to preserve feed density.
 
-## Data Shape
+## Data Shapes
 
 ```ts
 interface NewsArticle {
