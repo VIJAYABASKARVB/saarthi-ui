@@ -1,0 +1,57 @@
+{
+  "success": true,
+  "query": "show me the latest news for Bitcoin",
+  "response_type": "composite",
+  "generated_sql": "N/A — single-subject composite query",
+  "execution_time_ms": 118,
+  "row_count": 1,
+  "explanation": "I fetched recent Bitcoin news and wrapped it in a composite response. Only one section was returned because the query focused on a single topic.",
+  "data": {
+    "sections": [
+      {
+        "response_type": "news",
+        "title": "Bitcoin News",
+        "data": {
+          "articles": [
+            {
+              "id": "news-btc-001",
+              "headline": "Bitcoin Hash Rate Hits New All-Time High of 850 EH/s",
+              "source": "CoinDesk",
+              "url": "https://www.coindesk.com/markets/2026/05/13/bitcoin-hashrate-ath",
+              "published_at": "2026-05-13T10:15:00Z",
+              "sentiment": "positive",
+              "sentiment_score": 0.81,
+              "related_coins": ["bitcoin"],
+              "summary": "Bitcoin's seven-day average hash rate reached 850 exahashes per second, a new all-time high. The increase reflects growing miner investment in next-generation ASICs despite the recent halving compression on margins.",
+              "image_url": "https://images.coindesk.com/2026/05/btc-hashrate-ath.jpg"
+            },
+            {
+              "id": "news-btc-002",
+              "headline": "El Salvador Announces Plans to Issue Bitcoin Volcano Bonds in Q3 2026",
+              "source": "Reuters",
+              "url": "https://www.reuters.com/technology/el-salvador-volcano-bonds-2026-05-12",
+              "published_at": "2026-05-12T15:30:00Z",
+              "sentiment": "positive",
+              "sentiment_score": 0.65,
+              "related_coins": ["bitcoin"],
+              "summary": "El Salvador's government announced it will proceed with the long-awaited Bitcoin-backed volcano bonds in Q3 2026, aiming to raise $1 billion for geothermal energy infrastructure powered by the country's volcanic resources.",
+              "image_url": "https://images.reuters.com/2026/05/el-salvador-volcano.jpg"
+            },
+            {
+              "id": "news-btc-003",
+              "headline": "Bitcoin Dominance Dips Below 48% as Altcoin Season Intensifies",
+              "source": "The Block",
+              "url": "https://www.theblock.co/post/2026/05/12/btc-dominance-dip-altcoin-season",
+              "published_at": "2026-05-12T11:00:00Z",
+              "sentiment": "neutral",
+              "sentiment_score": 0.05,
+              "related_coins": ["bitcoin"],
+              "summary": "Bitcoin's market dominance has fallen below 48% for the first time since February, as capital rotation into large-cap altcoins accelerates. Analysts suggest this could signal the early stages of a sustained altcoin season.",
+              "image_url": "https://images.theblock.co/2026/05/btc-dominance.jpg"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

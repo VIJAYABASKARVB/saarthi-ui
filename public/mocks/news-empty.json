@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "query": "latest crypto news about Cardano ecosystem",
+  "response_type": "news",
+  "generated_sql": "SELECT id, headline, source, url, published_at, sentiment, sentiment_score, related_coins, summary, image_url FROM news WHERE related_coins CONTAINS 'cardano' ORDER BY published_at DESC LIMIT 20",
+  "execution_time_ms": 23,
+  "row_count": 0,
+  "explanation": "I searched for recent news articles related to the Cardano ecosystem. No articles were found in the current news feed for this topic. This could mean there have been no major Cardano-related news events in the past 48 hours, or the search filter was too narrow.",
+  "data": {
+    "articles": []
+  }
+}

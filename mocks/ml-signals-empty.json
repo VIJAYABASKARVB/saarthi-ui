@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "query": "show me ML signals for DeFi tokens under $1 market cap",
+  "response_type": "ml_signals",
+  "generated_sql": "SELECT slug, name, symbol, direction, signal_score, confidence, prob_buy, prob_hold, prob_sell, top_features, price, percent_change24h FROM ml_signals WHERE market_cap < 1000000 AND sector = 'DeFi' ORDER BY signal_score DESC",
+  "execution_time_ms": 67,
+  "row_count": 0,
+  "explanation": "I queried ML signal predictions for DeFi tokens with market cap under $1M. The model returned no signals — these tokens fall below the minimum market cap threshold required for reliable signal generation (currently $5M). Consider expanding your criteria to include small-cap DeFi tokens with market cap above $5M.",
+  "data": {
+    "as_of": "2026-05-13T06:00:00Z",
+    "model_version": "gbm-v4.2.1",
+    "signals": []
+  }
+}

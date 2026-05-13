@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "error_code": "EXECUTION_ERROR",
+  "reason": "The ML signal prediction model timed out after 30 seconds. The model inference service is currently under high load due to a spike in concurrent requests. Please retry your query in a few moments. If the issue persists, contact support with reference ID: ML-20260513-0842."
+}
