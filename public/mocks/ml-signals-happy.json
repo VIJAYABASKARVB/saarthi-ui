@@ -1,0 +1,115 @@
+{
+  "success": true,
+  "query": "latest ML signals for top altcoins",
+  "response_type": "ml_signals",
+  "generated_sql": "SELECT slug, name, symbol, direction, signal_score, confidence, prob_buy, prob_hold, prob_sell, top_features, price, percent_change24h FROM ml_signals WHERE as_of = CURRENT_DATE ORDER BY signal_score DESC",
+  "execution_time_ms": 89,
+  "row_count": 5,
+  "explanation": "I retrieved the latest ML signal predictions for the top altcoins by market cap. The model uses gradient boosting with 128 features across price action, on-chain metrics, and sentiment analysis.",
+  "data": {
+    "as_of": "2026-05-13T06:00:00Z",
+    "model_version": "gbm-v4.2.1",
+    "signals": [
+      {
+        "slug": "solana",
+        "name": "Solana",
+        "symbol": "SOL",
+        "direction": "Buy",
+        "signal_score": 78.4,
+        "confidence": 0.72,
+        "prob_buy": 0.72,
+        "prob_hold": 0.21,
+        "prob_sell": 0.07,
+        "top_features": [
+          { "name": "daily_active_addresses_7d_ma", "contribution": 0.184 },
+          { "name": "staked_supply_pct", "contribution": 0.152 },
+          { "name": "dex_volume_24h_usd", "contribution": 0.131 },
+          { "name": "price_momentum_30d", "contribution": 0.098 },
+          { "name": "funding_rate_perp", "contribution": 0.087 }
+        ],
+        "price": 142.56,
+        "percent_change24h": 3.21
+      },
+      {
+        "slug": "avalanche",
+        "name": "Avalanche",
+        "symbol": "AVAX",
+        "direction": "Buy",
+        "signal_score": 71.2,
+        "confidence": 0.65,
+        "prob_buy": 0.65,
+        "prob_hold": 0.28,
+        "prob_sell": 0.07,
+        "top_features": [
+          { "name": "subnet_tvl_usd", "contribution": 0.201 },
+          { "name": "cchain_tx_count_30d", "contribution": 0.167 },
+          { "name": "active_validators", "contribution": 0.122 },
+          { "name": "cross_chain_volume", "contribution": 0.094 },
+          { "name": "developer_commit_30d", "contribution": 0.078 }
+        ],
+        "price": 31.88,
+        "percent_change24h": 1.45
+      },
+      {
+        "slug": "chainlink",
+        "name": "Chainlink",
+        "symbol": "LINK",
+        "direction": "Hold",
+        "signal_score": 52.6,
+        "confidence": 0.48,
+        "prob_buy": 0.21,
+        "prob_hold": 0.48,
+        "prob_sell": 0.31,
+        "top_features": [
+          { "name": "ccip_volume_30d", "contribution": 0.142 },
+          { "name": "oracle_requests_24h", "contribution": 0.118 },
+          { "name": "staked_link_pct", "contribution": 0.095 },
+          { "name": "price_volatility_7d", "contribution": -0.112 },
+          { "name": "network_growth_30d", "contribution": 0.081 }
+        ],
+        "price": 18.24,
+        "percent_change24h": -0.78
+      },
+      {
+        "slug": "polygon",
+        "name": "Polygon",
+        "symbol": "MATIC",
+        "direction": "Hold",
+        "signal_score": 48.1,
+        "confidence": 0.44,
+        "prob_buy": 0.18,
+        "prob_hold": 0.44,
+        "prob_sell": 0.38,
+        "top_features": [
+          { "name": "zk_rollup_tx_count", "contribution": 0.113 },
+          { "name": "dapp_count", "contribution": 0.092 },
+          { "name": "active_addresses_30d_change", "contribution": -0.141 },
+          { "name": "gas_fees_7d_avg", "contribution": 0.076 },
+          { "name": "bridged_tvl", "contribution": 0.064 }
+        ],
+        "price": 0.682,
+        "percent_change24h": -1.22
+      },
+      {
+        "slug": "arbitrum",
+        "name": "Arbitrum",
+        "symbol": "ARB",
+        "direction": "Sell",
+        "signal_score": 31.8,
+        "confidence": 0.56,
+        "prob_buy": 0.08,
+        "prob_hold": 0.36,
+        "prob_sell": 0.56,
+        "top_features": [
+          { "name": "tvl_7d_change", "contribution": -0.231 },
+          { "name": "daily_tx_count_change", "contribution": -0.187 },
+          { "name": "token_unlock_schedule", "contribution": -0.154 },
+          { "name": "revenue_30d_trend", "contribution": -0.112 },
+          { "name": "competitor_tvl_share", "contribution": -0.098 }
+        ],
+        "price": 0.841,
+        "percent_change24h": -4.67
+      }
+    ]
+  }
+}

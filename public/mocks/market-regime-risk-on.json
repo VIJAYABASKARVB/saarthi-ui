@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "query": "what is the current crypto market regime",
+  "response_type": "market_regime",
+  "generated_sql": "SELECT regime_state, confidence, duration_days, transitions, history, narrative FROM market_regime ORDER BY as_of DESC LIMIT 1",
+  "execution_time_ms": 42,
+  "row_count": 1,
+  "explanation": "I detected the current crypto market macro regime using a Hidden Markov Model with 6 observable features: total market cap trend, BTC dominance, 30-day volatility, funding rates, stablecoin supply ratio, and exchange netflow.",
+  "data": {
+    "as_of": "2026-05-13T00:00:00Z",
+    "regime_state": "Risk-on",
+    "confidence": 0.82,
+    "duration_days": 47,
+    "transitions": {
+      "to_risk_on": 0.82,
+      "to_risk_off": 0.08,
+      "to_choppy": 0.10
+    },
+    "history": [
+      { "date": "2026-05-13", "state": "Risk-on" },
+      { "date": "2026-05-12", "state": "Risk-on" },
+      { "date": "2026-05-11", "state": "Risk-on" },
+      { "date": "2026-05-10", "state": "Risk-on" },
+      { "date": "2026-05-09", "state": "Risk-on" },
+      { "date": "2026-05-08", "state": "Risk-on" },
+      { "date": "2026-05-07", "state": "Risk-on" },
+      { "date": "2026-05-06", "state": "Risk-on" },
+      { "date": "2026-05-05", "state": "Risk-on" },
+      { "date": "2026-05-04", "state": "Risk-on" }
+    ],
+    "narrative": "The market has been in a sustained Risk-on regime for 47 days, driven by improving macroeconomic conditions, declining interest rate expectations, and strong institutional inflows into spot Bitcoin ETFs. Total crypto market cap has increased 34% over the period. The HMM assigns 82% probability to continuation, though declining momentum in altcoins relative to BTC suggests the regime may be maturing."
+  }
+}

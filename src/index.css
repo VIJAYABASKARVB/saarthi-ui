@@ -1,111 +1,233 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
+  --bg: #0a0a0a;
+  --text: #ffffff;
+  --green: #00ff41;
+  --red: #ff3131;
+  --amber: #ffb700;
+  --border: #2a2a2a;
+  --text-dim: #666666;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', 'Consolas', 'Courier New', monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
+/* App layout */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
 }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
+.app__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+.app__title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 4px;
+}
+
+.app__subtitle {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Terminal input */
+
+.query-input {
+  margin-bottom: 24px;
+}
+
+.query-input__row {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  gap: 8px;
+}
+
+.query-input__prefix {
+  color: var(--green);
+  font-size: 16px;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.query-input__field {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  caret-color: var(--green);
+  min-width: 0;
+}
+
+.query-input__field::placeholder {
+  color: var(--text-dim);
+}
+
+.query-input__cursor {
+  color: var(--green);
+  animation: cursor-blink 1s step-end infinite;
+  user-select: none;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Chips */
+
+.chips {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.chip {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 11px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.chip:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* Output canvas */
+
+.output-canvas__loading {
+  color: var(--green);
+  font-size: 16px;
+  padding: 32px 0;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.output-canvas__error {
+  border: 1px solid var(--red);
+  padding: 20px;
+}
+
+.output-canvas__error-header {
+  color: var(--red);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.output-canvas__error-body {
+  color: var(--red);
+  opacity: 0.85;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.output-canvas__rejected {
+  border: 1px solid var(--amber);
+  padding: 20px;
+}
+
+.output-canvas__rejected-header {
+  color: var(--amber);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.output-canvas__rejected-body {
+  color: var(--amber);
+  opacity: 0.85;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.output-canvas__empty {
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.output-canvas__empty-header {
+  color: var(--text-dim);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.output-canvas__empty-body {
+  color: var(--text-dim);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.output-canvas__success {
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+/* Placeholder renderer */
+
+.placeholder-renderer {
+  color: var(--green);
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.placeholder-renderer__bracket {
+  color: var(--text-dim);
+}
+
+.placeholder-renderer__text {
+  color: var(--text-dim);
+  letter-spacing: 0;
 }

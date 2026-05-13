@@ -1,0 +1,22 @@
+{
+  "success": true,
+  "query": "find me coins with market cap under 1M that pumped 500% in 24h",
+  "response_type": "screener",
+  "generated_sql": "SELECT slug, name, symbol, price, percent_change24h, market_cap, logo_url, spark_7d FROM coins WHERE market_cap < 1000000 AND percent_change24h > 500 ORDER BY percent_change24h DESC LIMIT 100",
+  "execution_time_ms": 32,
+  "row_count": 0,
+  "explanation": "I searched for coins with market cap under $1M and a 24h gain exceeding 500%. No coins matched both criteria — extreme gainers at that market cap tier are extremely rare.",
+  "data": {
+    "columns": [
+      { "key": "slug", "label": "Slug", "type": "string", "is_default": true },
+      { "key": "name", "label": "Name", "type": "string", "is_default": true },
+      { "key": "symbol", "label": "Symbol", "type": "string", "is_default": true },
+      { "key": "price", "label": "Price", "type": "number", "is_default": true },
+      { "key": "percent_change24h", "label": "24h Change", "type": "percent", "is_default": true, "color_scale": true },
+      { "key": "market_cap", "label": "Market Cap", "type": "number", "is_default": true },
+      { "key": "logo_url", "label": "Logo", "type": "image", "is_default": false },
+      { "key": "spark_7d", "label": "7 Day Trend", "type": "sparkline", "is_default": true }
+    ],
+    "rows": []
+  }
+}

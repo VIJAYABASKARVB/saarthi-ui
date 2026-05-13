@@ -195,6 +195,6 @@ export function isError(
 export function isResponseType<K extends keyof ResponseTypeMap>(
   response: DashboardResponse,
   type: K
-): response is SuccessEnvelope<K, ResponseTypeMap[K]> {
+): response is DashboardResponse & { success: true; response_type: K } {
   return response.success === true && response.response_type === type
 }

@@ -1,0 +1,70 @@
+{
+  "success": true,
+  "query": "show me detailed information for Bitcoin",
+  "response_type": "coin_detail",
+  "generated_sql": "SELECT slug, name, symbol, price, market_cap, cmc_rank, changes, metrics, on_chain, price_history, latest_signal FROM coins WHERE slug = 'bitcoin'",
+  "execution_time_ms": 62,
+  "row_count": 1,
+  "explanation": "I retrieved comprehensive on-chain and market data for Bitcoin (BTC), including price action, network metrics, and the latest ML signal.",
+  "data": {
+    "slug": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "BTC",
+    "price": 75420.00,
+    "market_cap": 1492000000000,
+    "cmc_rank": 1,
+    "changes": {
+      "1h": 0.32,
+      "24h": 1.84,
+      "7d": -2.15,
+      "30d": 8.47
+    },
+    "metrics": {
+      "distance_from_ath_pct": 12.4,
+      "distance_from_atl_pct": 99999999.99,
+      "turnover": 0.038,
+      "prism_score": 76.2
+    },
+    "on_chain": {
+      "active_addresses_24h": 892000,
+      "tx_count_24h": 412000,
+      "large_holder_change_7d_pct": 1.24
+    },
+    "price_history": [
+      { "t": "2026-04-13T00:00:00Z", "price": 69540 },
+      { "t": "2026-04-14T00:00:00Z", "price": 70120 },
+      { "t": "2026-04-15T00:00:00Z", "price": 69800 },
+      { "t": "2026-04-16T00:00:00Z", "price": 70560 },
+      { "t": "2026-04-17T00:00:00Z", "price": 71230 },
+      { "t": "2026-04-18T00:00:00Z", "price": 70880 },
+      { "t": "2026-04-19T00:00:00Z", "price": 71500 },
+      { "t": "2026-04-20T00:00:00Z", "price": 72140 },
+      { "t": "2026-04-21T00:00:00Z", "price": 71890 },
+      { "t": "2026-04-22T00:00:00Z", "price": 72670 },
+      { "t": "2026-04-23T00:00:00Z", "price": 73420 },
+      { "t": "2026-04-24T00:00:00Z", "price": 72950 },
+      { "t": "2026-04-25T00:00:00Z", "price": 74110 },
+      { "t": "2026-04-26T00:00:00Z", "price": 74580 },
+      { "t": "2026-04-27T00:00:00Z", "price": 75200 },
+      { "t": "2026-04-28T00:00:00Z", "price": 75840 },
+      { "t": "2026-04-29T00:00:00Z", "price": 76120 },
+      { "t": "2026-04-30T00:00:00Z", "price": 76480 },
+      { "t": "2026-05-01T00:00:00Z", "price": 75800 },
+      { "t": "2026-05-02T00:00:00Z", "price": 74920 },
+      { "t": "2026-05-03T00:00:00Z", "price": 73560 },
+      { "t": "2026-05-04T00:00:00Z", "price": 74150 },
+      { "t": "2026-05-05T00:00:00Z", "price": 73800 },
+      { "t": "2026-05-06T00:00:00Z", "price": 74420 },
+      { "t": "2026-05-07T00:00:00Z", "price": 75680 },
+      { "t": "2026-05-08T00:00:00Z", "price": 75210 },
+      { "t": "2026-05-09T00:00:00Z", "price": 74860 },
+      { "t": "2026-05-10T00:00:00Z", "price": 75180 },
+      { "t": "2026-05-11T00:00:00Z", "price": 75550 },
+      { "t": "2026-05-12T00:00:00Z", "price": 75420 }
+    ],
+    "latest_signal": {
+      "direction": "Hold",
+      "confidence": 0.63
+    }
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "success": true,
+  "query": "latest crypto news for Bitcoin and Ethereum",
+  "response_type": "news",
+  "generated_sql": "SELECT id, headline, source, url, published_at, sentiment, sentiment_score, related_coins, summary, image_url FROM news ORDER BY published_at DESC LIMIT 6",
+  "execution_time_ms": 55,
+  "row_count": 6,
+  "explanation": "I fetched the 6 most recent crypto news articles. Sentiment is analyzed using a fine-tuned FinBERT model with crypto-specific vocabulary.",
+  "data": {
+    "articles": [
+      {
+        "id": "news-001",
+        "headline": "BlackRock Spot Bitcoin ETF Records $1.2B Weekly Inflow, Largest Since January",
+        "source": "CoinDesk",
+        "url": "https://www.coindesk.com/markets/2026/05/13/blackrock-bitcoin-etf-inflow",
+        "published_at": "2026-05-13T08:30:00Z",
+        "sentiment": "positive",
+        "sentiment_score": 0.87,
+        "related_coins": ["bitcoin"],
+        "summary": "BlackRock's iShares Bitcoin Trust (IBIT) saw $1.2 billion in net weekly inflows, the highest since January 2026. The surge follows renewed institutional interest after the Fed's dovish pivot signal last week.",
+        "image_url": "https://images.coindesk.com/2026/05/blackrock-btc-etf.jpg"
+      },
+      {
+        "id": "news-002",
+        "headline": "Ethereum Dencun Upgrade Drives Layer-2 Volumes to New All-Time High",
+        "source": "The Block",
+        "url": "https://www.theblock.co/post/2026/05/13/ethereum-dencun-l2-volumes-ath",
+        "published_at": "2026-05-13T07:45:00Z",
+        "sentiment": "positive",
+        "sentiment_score": 0.92,
+        "related_coins": ["ethereum", "arbitrum", "optimism", "base"],
+        "summary": "Three months post-Dencun, Ethereum L2s are processing $4.2B in daily volume — a new all-time high. Blob space adoption has exceeded expectations, with Base alone accounting for 38% of all blob transactions.",
+        "image_url": "https://images.theblock.co/2026/05/eth-dencun-l2.jpg"
+      },
+      {
+        "id": "news-003",
+        "headline": "SEC Delays Decision on Spot Ethereum ETF Options Trading",
+        "source": "Reuters",
+        "url": "https://www.reuters.com/technology/sec-delays-eth-etf-options-2026-05-12",
+        "published_at": "2026-05-12T22:15:00Z",
+        "sentiment": "negative",
+        "sentiment_score": -0.64,
+        "related_coins": ["ethereum"],
+        "summary": "The SEC has postponed its ruling on whether to allow options trading on spot Ethereum ETFs, extending the comment period by 60 days. Market participants had expected a decision this month.",
+        "image_url": "https://images.reuters.com/2026/05/sec-delay-eth.jpg"
+      },
+      {
+        "id": "news-004",
+        "headline": "Solana Validator Count Surpasses 3,000 Amid Geographic Decentralization Push",
+        "source": "Messari",
+        "url": "https://messari.io/news/solana-validator-3000-2026-05-12",
+        "published_at": "2026-05-12T18:00:00Z",
+        "sentiment": "positive",
+        "sentiment_score": 0.74,
+        "related_coins": ["solana"],
+        "summary": "Solana's validator set has grown to 3,012, up from 1,950 a year ago. The distribution now spans 42 countries, with no single cloud provider hosting more than 14% of validators. The Nakamoto coefficient has improved to 28.",
+        "image_url": "https://images.messari.io/2026/05/sol-validators.jpg"
+      },
+      {
+        "id": "news-005",
+        "headline": "Crypto Exchange Reserves Drop to 3-Year Low, Signaling Supply Squeeze",
+        "source": "CoinDesk",
+        "url": "https://www.coindesk.com/markets/2026/05/12/exchange-reserves-3yr-low",
+        "published_at": "2026-05-12T14:30:00Z",
+        "sentiment": "neutral",
+        "sentiment_score": 0.12,
+        "related_coins": ["bitcoin", "ethereum"],
+        "summary": "Combined Bitcoin and Ethereum exchange reserves have fallen to 2.12M BTC and 18.4M ETH — the lowest levels since mid-2023. Analysts are divided on whether this signals accumulating HODLers or movement to OTC desks and DeFi protocols.",
+        "image_url": "https://images.coindesk.com/2026/05/exchange-reserves.jpg"
+      },
+      {
+        "id": "news-006",
+        "headline": "Binance Withdraws Dubai VASP License Application Amid Regulatory Restructuring",
+        "source": "Bloomberg",
+        "url": "https://www.bloomberg.com/news/2026-05-11/binance-withdraws-dubai-license",
+        "published_at": "2026-05-11T09:00:00Z",
+        "sentiment": "negative",
+        "sentiment_score": -0.71,
+        "related_coins": ["bitcoin", "bnb"],
+        "summary": "Binance has withdrawn its Virtual Asset Service Provider license application in Dubai, citing a need to restructure its local operations. The decision comes as the exchange faces ongoing regulatory scrutiny across multiple jurisdictions.",
+        "image_url": "https://images.bloomberg.com/2026/05/binance-dubai.jpg"
+      }
+    ]
+  }
+}
