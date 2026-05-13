@@ -5,6 +5,7 @@ import ScreenerRenderer from './renderers/ScreenerRenderer'
 import MlSignalsRenderer from './renderers/MlSignalsRenderer'
 import MarketRegimeRenderer from './renderers/MarketRegimeRenderer'
 import NewsRenderer from './renderers/NewsRenderer'
+import CoinDetailRenderer from './renderers/CoinDetailRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -59,6 +60,8 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
       return <MarketRegimeRenderer response={response} />
     case "news":
       return <NewsRenderer response={response} />
+    case "coin_detail":
+      return <CoinDetailRenderer response={response} />
     default:
       return (
         <div className="output-canvas__success">
