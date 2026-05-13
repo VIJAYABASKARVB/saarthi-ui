@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import type { DashboardResponse } from '../types/api'
 import { isSuccess } from '../types/api'
 import ScreenerRenderer from './renderers/ScreenerRenderer'
+import MlSignalsRenderer from './renderers/MlSignalsRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -50,6 +51,8 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
   switch (response.response_type) {
     case "screener":
       return <ScreenerRenderer response={response} />
+    case "ml_signals":
+      return <MlSignalsRenderer response={response} />
     default:
       return (
         <div className="output-canvas__success">
