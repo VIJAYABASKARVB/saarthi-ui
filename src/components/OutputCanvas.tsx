@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import type { DashboardResponse } from '../types/api'
 import { isSuccess } from '../types/api'
+import ScreenerRenderer from './renderers/ScreenerRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -46,19 +47,21 @@ function EmptyState({ explanation }: { explanation: string }) {
 }
 
 function SuccessState({ response }: { response: DashboardResponse & { success: true } }) {
-  const label = response.response_type
-    .replace(/_/g, " ")
-    .toUpperCase()
-  return (
-    <div className="output-canvas__success">
-      <div className="placeholder-renderer">
-        <span className="placeholder-renderer__bracket">[</span>
-        {label}
-        <span className="placeholder-renderer__bracket">]</span>
-        <span className="placeholder-renderer__text"> RENDERER — {response.row_count} rows</span>
-      </div>
-    </div>
-  )
+  switch (response.response_type) {
+    case "screener":
+      return <ScreenerRenderer response={response} />
+    default:
+      return (
+        <div className="output-canvas__success">
+          <div className="placeholder-renderer">
+            <span className="placeholder-renderer__bracket">[</span>
+            {response.response_type.replace(/_/g, " ").toUpperCase()}
+            <span className="placeholder-renderer__bracket">]</span>
+            <span className="placeholder-renderer__text"> RENDERER — {response.row_count} rows</span>
+          </div>
+        </div>
+      )
+  }
 }
 
 export default function OutputCanvas({ response, isLoading }: OutputCanvasProps) {

@@ -231,3 +231,113 @@ body {
   color: var(--text-dim);
   letter-spacing: 0;
 }
+
+/* Screener */
+.screener {
+  border: 1px solid var(--border);
+}
+.screener-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+.screener-meta__item {
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.screener-density-btn {
+  margin-left: auto;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 10px;
+  padding: 3px 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.screener-density-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+.screener-explanation {
+  padding: 10px 14px;
+  font-size: 12px;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+.screener-table-wrap {
+  overflow-x: auto;
+}
+.screener-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+.screener-header-row {
+  border-bottom: 1px solid var(--border);
+}
+.screener-header-cell {
+  padding: 0;
+}
+.screener-sort-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  text-align: left;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.screener-sort-btn--active {
+  color: var(--green);
+}
+.screener-row {
+  border-bottom: 1px solid var(--border);
+  transition: background 0.1s;
+}
+.screener-row:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+.screener-data-cell {
+  padding: 0 10px;
+  white-space: nowrap;
+}
+.screener-cell {
+  display: block;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 160px;
+}
+.screener-cell--compact {
+  padding: 6px 0;
+}
+.screener-cell--comfortable {
+  padding: 10px 0;
+}
+.screener-cell--right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.screener-cell--dim {
+  color: var(--text-dim);
+}
+.screener-sparkline {
+  display: flex;
+  align-items: center;
+}
+.screener-logo {
+  border-radius: 50%;
+  vertical-align: middle;
+}
