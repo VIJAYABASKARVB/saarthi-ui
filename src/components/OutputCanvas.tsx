@@ -3,6 +3,7 @@ import type { DashboardResponse } from '../types/api'
 import { isSuccess } from '../types/api'
 import ScreenerRenderer from './renderers/ScreenerRenderer'
 import MlSignalsRenderer from './renderers/MlSignalsRenderer'
+import MarketRegimeRenderer from './renderers/MarketRegimeRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -53,6 +54,8 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
       return <ScreenerRenderer response={response} />
     case "ml_signals":
       return <MlSignalsRenderer response={response} />
+    case "market_regime":
+      return <MarketRegimeRenderer response={response} />
     default:
       return (
         <div className="output-canvas__success">
