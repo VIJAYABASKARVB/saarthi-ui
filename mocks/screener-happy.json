@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "query": "show me oversold small-caps with a Buy signal",
+  "response_type": "screener",
+  "generated_sql": "SELECT slug, name, symbol, price, percent_change24h, market_cap, logo_url, spark_7d FROM coins WHERE percent_change7d < -15 AND ml_signal = 'Buy' ORDER BY market_cap DESC LIMIT 100",
+  "execution_time_ms": 145,
+  "row_count": 8,
+  "explanation": "I looked at coins with percent_change7d < -15% AND latest ML signal = Buy. Found 8 matches, sorted by market cap descending.",
+  "data": {
+    "columns": [
+      { "key": "slug", "label": "Slug", "type": "string", "is_default": true },
+      { "key": "name", "label": "Name", "type": "string", "is_default": true },
+      { "key": "symbol", "label": "Symbol", "type": "string", "is_default": true },
+      { "key": "price", "label": "Price", "type": "number", "is_default": true },
+      { "key": "percent_change24h", "label": "24h Change", "type": "percent", "is_default": true, "color_scale": true },
+      { "key": "market_cap", "label": "Market Cap", "type": "number", "is_default": true },
+      { "key": "logo_url", "label": "Logo", "type": "image", "is_default": false },
+      { "key": "spark_7d", "label": "7 Day Trend", "type": "sparkline", "is_default": true }
+    ],
+    "rows": [
+      { "slug": "immutable-x", "name": "Immutable X", "symbol": "IMX", "price": 1.24, "percent_change24h": -3.42, "market_cap": 1840000000, "logo_url": "https://assets.coingecko.com/coins/images/17233/thumb/imx.png", "spark_7d": [1.58, 1.52, 1.48, 1.42, 1.38, 1.31, 1.24] },
+      { "slug": "optimism", "name": "Optimism", "symbol": "OP", "price": 1.87, "percent_change24h": -2.18, "market_cap": 1520000000, "logo_url": "https://assets.coingecko.com/coins/images/25244/thumb/OP.png", "spark_7d": [2.23, 2.18, 2.09, 2.01, 1.96, 1.91, 1.87] },
+      { "slug": "celestia", "name": "Celestia", "symbol": "TIA", "price": 5.63, "percent_change24h": -5.71, "market_cap": 1180000000, "logo_url": "https://assets.coingecko.com/coins/images/31967/thumb/tia.jpg", "spark_7d": [7.12, 6.84, 6.51, 6.22, 5.98, 5.81, 5.63] },
+      { "slug": "injective", "name": "Injective", "symbol": "INJ", "price": 11.34, "percent_change24h": -4.05, "market_cap": 1070000000, "logo_url": "https://assets.coingecko.com/coins/images/18282/thumb/inj.png", "spark_7d": [14.21, 13.87, 13.22, 12.64, 12.11, 11.78, 11.34] },
+      { "slug": "dydx", "name": "dYdX", "symbol": "DYDX", "price": 1.52, "percent_change24h": -6.33, "market_cap": 856000000, "logo_url": "https://assets.coingecko.com/coins/images/24441/thumb/dydx.png", "spark_7d": [2.01, 1.94, 1.87, 1.78, 1.69, 1.61, 1.52] },
+      { "slug": "zilliqa", "name": "Zilliqa", "symbol": "ZIL", "price": 0.0284, "percent_change24h": -1.97, "market_cap": 524000000, "logo_url": "https://assets.coingecko.com/coins/images/2687/thumb/ZIL.png", "spark_7d": [0.0331, 0.0322, 0.0314, 0.0305, 0.0298, 0.0291, 0.0284] },
+      { "slug": "superfarm", "name": "SuperFarm", "symbol": "SUPER", "price": 0.412, "percent_change24h": -8.44, "market_cap": 189000000, "logo_url": "https://assets.coingecko.com/coins/images/14040/thumb/SUPER.png", "spark_7d": [0.538, 0.511, 0.494, 0.472, 0.448, 0.431, 0.412] },
+      { "slug": "api3", "name": "API3", "symbol": "API3", "price": 1.76, "percent_change24h": -2.86, "market_cap": 152000000, "logo_url": "https://assets.coingecko.com/coins/images/13256/thumb/api3.jpg", "spark_7d": [2.11, 2.05, 1.98, 1.91, 1.86, 1.81, 1.76] }
+    ]
+  }
+}

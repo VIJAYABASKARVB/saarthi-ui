@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "error_code": "EXECUTION_ERROR",
+  "reason": "An internal error occurred while processing your query. The database connection pool was exhausted. Please try again in a few seconds."
+}

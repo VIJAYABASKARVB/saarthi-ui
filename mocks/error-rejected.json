@@ -1,0 +1,5 @@
+{
+  "success": false,
+  "error_code": "AGENT_REJECTED",
+  "reason": "This query asks for data we don't store. I can help you with: coin prices and market data, ML signal predictions, market regime detection, crypto news, coin details, or combined market overviews. Try asking for something like 'show me oversold coins' or 'latest BTC news'."
+}

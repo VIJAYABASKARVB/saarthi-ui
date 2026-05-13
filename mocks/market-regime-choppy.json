@@ -1,0 +1,33 @@
+{
+  "success": true,
+  "query": "has the crypto market regime shifted recently",
+  "response_type": "market_regime",
+  "generated_sql": "SELECT regime_state, confidence, duration_days, transitions, history, narrative FROM market_regime ORDER BY as_of DESC LIMIT 1",
+  "execution_time_ms": 38,
+  "row_count": 1,
+  "explanation": "I analyzed market macro regime using an HMM with 6 observable features: total market cap trend, BTC dominance, 30-day volatility, funding rates, stablecoin supply ratio, and exchange netflow.",
+  "data": {
+    "as_of": "2026-05-04T00:00:00Z",
+    "regime_state": "Choppy",
+    "confidence": 0.51,
+    "duration_days": 12,
+    "transitions": {
+      "to_risk_on": 0.25,
+      "to_risk_off": 0.24,
+      "to_choppy": 0.51
+    },
+    "history": [
+      { "date": "2026-05-04", "state": "Choppy" },
+      { "date": "2026-05-03", "state": "Choppy" },
+      { "date": "2026-05-02", "state": "Choppy" },
+      { "date": "2026-05-01", "state": "Choppy" },
+      { "date": "2026-04-30", "state": "Choppy" },
+      { "date": "2026-04-29", "state": "Risk-on" },
+      { "date": "2026-04-28", "state": "Risk-on" },
+      { "date": "2026-04-27", "state": "Risk-on" },
+      { "date": "2026-04-26", "state": "Choppy" },
+      { "date": "2026-04-25", "state": "Choppy" }
+    ],
+    "narrative": "The market has entered a Choppy regime with no clear directional bias. BTC is range-bound between $72K and $78K, with low conviction breakouts failing on both sides. Altcoin correlation has broken down — layer-1 tokens are diverging from DeFi and memecoins. The HMM confidence is low at 51%, reflecting mixed signals across the feature set. Volume has declined 28% from the prior Risk-on period, and open interest in perpetual futures has flattened. This regime typically resolves within 2-4 weeks."
+  }
+}
