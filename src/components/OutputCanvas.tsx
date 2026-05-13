@@ -4,6 +4,7 @@ import { isSuccess } from '../types/api'
 import ScreenerRenderer from './renderers/ScreenerRenderer'
 import MlSignalsRenderer from './renderers/MlSignalsRenderer'
 import MarketRegimeRenderer from './renderers/MarketRegimeRenderer'
+import NewsRenderer from './renderers/NewsRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -56,6 +57,8 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
       return <MlSignalsRenderer response={response} />
     case "market_regime":
       return <MarketRegimeRenderer response={response} />
+    case "news":
+      return <NewsRenderer response={response} />
     default:
       return (
         <div className="output-canvas__success">
