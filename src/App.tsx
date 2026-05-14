@@ -17,8 +17,10 @@ const MOCK_MAP: Record<string, string> = {
 function App() {
   const [response, setResponse] = useState<DashboardResponse | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [lastQuery, setLastQuery] = useState("")
 
   const handleSubmit = async (query: string) => {
+    setLastQuery(query)
     setIsLoading(true)
     setResponse(null)
     try {
@@ -39,7 +41,7 @@ function App() {
         <span className="app__subtitle">crypto analytics terminal</span>
       </header>
       <QueryInput onSubmit={handleSubmit} />
-      <OutputCanvas response={response} isLoading={isLoading} />
+      <OutputCanvas response={response} isLoading={isLoading} query={lastQuery} />
     </div>
   )
 }

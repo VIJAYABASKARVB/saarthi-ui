@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react'
 import type { DashboardResponse } from '../types/api'
 import { isSuccess } from '../types/api'
 import ScreenerRenderer from './renderers/ScreenerRenderer'
@@ -7,21 +6,12 @@ import MarketRegimeRenderer from './renderers/MarketRegimeRenderer'
 import NewsRenderer from './renderers/NewsRenderer'
 import CoinDetailRenderer from './renderers/CoinDetailRenderer'
 import CompositeRenderer from './renderers/CompositeRenderer'
+import SkeletonLoader from './skeletons/SkeletonLoader'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
   isLoading: boolean
-}
-
-function LoadingState() {
-  const [dots, setDots] = useState("")
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setDots(prev => prev.length >= 3 ? "" : prev + ".")
-    }, 350)
-    return () => clearInterval(interval)
-  }, [])
-  return <div className="output-canvas__loading">FETCHING{dots}</div>
+  query?: string
 }
 
 function ExecutionError({ reason }: { reason: string }) {
@@ -68,8 +58,27 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
   }
 }
 
-export default function OutputCanvas({ response, isLoading }: OutputCanvasProps) {
-  if (isLoading) return <LoadingState />
+const SKELETON_MAP: Record<string, string> = {
+  screener: "screener",
+  signals: "signals",
+  regime: "regime",
+  news: "news",
+  coin: "coin",
+}
+
+export default function OutputCanvas({ response, isLoading, query }: OutputCanvasProps) {
+  if (isLoading) {
+    const skeletonType = SKELETON_MAP[query ?? ""] ?? "default"
+    return (
+      <div>
+        <div className="loading-header">
+          <div className="loading-fetching">FETCHING...</div>
+          {query && <div className="loading-query">&gt; {query}</div>}
+        </div>
+        <SkeletonLoader type={skeletonType} />
+      </div>
+    )
+  }
   if (!response) return null
   if (!isSuccess(response)) {
     if (response.error_code === "AGENT_REJECTED") {
