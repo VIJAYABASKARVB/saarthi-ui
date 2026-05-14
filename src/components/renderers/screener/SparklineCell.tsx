@@ -1,4 +1,4 @@
-import { LineChart, Line, ResponsiveContainer } from "recharts"
+import { LineChart, Line, Area, ResponsiveContainer } from "recharts"
 
 interface SparklineCellProps {
   data: number[]
@@ -6,7 +6,7 @@ interface SparklineCellProps {
 
 export default function SparklineCell({ data }: SparklineCellProps) {
   if (!data || data.length < 2) {
-    return <span className="screener-cell--dim">&mdash;</span>
+    return <span className="text-[var(--text-dim)]">&mdash;</span>
   }
 
   const points = data.map((v, i) => ({ i, v }))
@@ -15,9 +15,16 @@ export default function SparklineCell({ data }: SparklineCellProps) {
   const color = last > first ? "var(--green)" : "var(--red)"
 
   return (
-    <div className="screener-sparkline">
-      <ResponsiveContainer width={80} height={24}>
-        <LineChart data={points}>
+    <div className="flex items-center py-2">
+      <ResponsiveContainer width={80} height={32}>
+        <LineChart data={points} margin={{ top: 2, right: 0, bottom: 2, left: 0 }}>
+          <defs>
+            <linearGradient id={`grad-${color}`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor={color} stopOpacity={0.2} />
+              <stop offset="100%" stopColor={color} stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <Area type="monotone" dataKey="v" fill={`url(#grad-${color})`} stroke="none" />
           <Line
             type="monotone"
             dataKey="v"
