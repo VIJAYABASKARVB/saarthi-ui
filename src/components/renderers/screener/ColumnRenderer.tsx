@@ -12,10 +12,10 @@ function formatCurrency(n: number): string {
   return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 }
 
-function formatPercent(n: number): { text: string; color: string } {
-  if (n > 0) return { text: "+" + n.toFixed(2) + "%", color: "var(--green)" }
-  if (n < 0) return { text: n.toFixed(2) + "%", color: "var(--red)" }
-  return { text: "0.00%", color: "var(--text-dim)" }
+function formatPercentText(n: number): string {
+  if (n > 0) return "+" + n.toFixed(2) + "%"
+  if (n < 0) return n.toFixed(2) + "%"
+  return "0.00%"
 }
 
 function normalizeType(col: ScreenerColumn): string {
@@ -31,32 +31,89 @@ function normalizeType(col: ScreenerColumn): string {
 export default function ColumnRenderer({ column, row, density }: ColumnRendererProps) {
   const value = row[column.key as keyof ScreenerRow]
   const type = normalizeType(column)
-  const className = "screener-cell screener-cell--" + density
+  const cellCls = "flex items-center leading-tight " + (density === "compact" ? "h-12" : "h-14")
 
   switch (type) {
-    case "text":
-      return <span className={className}>{String(value ?? "")}</span>
+    case "text": {
+      if (column.key === "slug" || column.key === "name") {
+        const slugVal = String(row.slug ?? "")
+        const nameVal = String(row.name ?? "")
+        const symbolVal = String(row.symbol ?? "")
+        const displayName = column.key === "slug" ? slugVal : nameVal
+        return (
+          <div className={cellCls}>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium text-[var(--text)]">{displayName}</span>
+              <span className="text-[11px] text-[var(--text-mute)]">{symbolVal}</span>
+            </div>
+          </div>
+        )
+      }
+      return (
+        <div className={cellCls}>
+          <span className="text-sm text-[var(--text)]">{String(value ?? "")}</span>
+        </div>
+      )
+    }
 
     case "currency":
-      return <span className={className + " screener-cell--right"}>{formatCurrency(Number(value) || 0)}</span>
+      return (
+        <div className={cellCls + " justify-end"}>
+          <span className="text-sm font-mono text-[var(--text)]">{formatCurrency(Number(value) || 0)}</span>
+        </div>
+      )
 
     case "currency_compact":
-      return <span className={className + " screener-cell--right"}>{formatCompact(Number(value) || 0)}</span>
+      return (
+        <div className={cellCls + " justify-end"}>
+          <span className="text-sm font-mono text-[var(--text-dim)]">{formatCompact(Number(value) || 0)}</span>
+        </div>
+      )
 
     case "percent": {
-      const { text, color } = formatPercent(Number(value) || 0)
-      return <span className={className + " screener-cell--right"} style={{ color }}>{text}</span>
+      const text = formatPercentText(Number(value) || 0)
+      const isPos = (Number(value) || 0) > 0
+      const isNeg = (Number(value) || 0) < 0
+      return (
+        <div className={cellCls}>
+          <span
+            className={
+              "inline-flex items-center rounded-full text-xs font-mono font-medium px-2.5 py-0.5 " +
+              (isPos
+                ? "bg-[rgba(0,212,168,0.15)] text-[#00d4a8] border border-[rgba(0,212,168,0.3)]"
+                : isNeg
+                ? "bg-[rgba(255,107,107,0.15)] text-[#ff6b6b] border border-[rgba(255,107,107,0.3)]"
+                : "text-[var(--text-dim)] border border-[var(--border)]")
+            }
+          >
+            {text}
+          </span>
+        </div>
+      )
     }
 
     case "sparkline":
-      return <SparklineCell data={value as number[]} />
+      return (
+        <div className={cellCls}>
+          <SparklineCell data={value as number[]} />
+        </div>
+      )
 
     case "image":
-      return value
-        ? <img src={value as string} alt="" className="screener-logo" width={18} height={18} />
-        : <span className="screener-cell--dim">&mdash;</span>
+      return (
+        <div className={cellCls}>
+          {value
+            ? <img src={value as string} alt="" className="inline-block rounded-full" width={18} height={18} />
+            : <span className="text-[var(--text-dim)]">&mdash;</span>
+          }
+        </div>
+      )
 
     default:
-      return <span className={className}>{String(value ?? "")}</span>
+      return (
+        <div className={cellCls}>
+          <span className="text-sm text-[var(--text)]">{String(value ?? "")}</span>
+        </div>
+      )
   }
 }

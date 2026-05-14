@@ -11,8 +11,8 @@ export default function ConfidenceBar({ value, color, max = 1 }: ConfidenceBarPr
   const style: CSSProperties = { width: `${pct}%`, background: color }
 
   return (
-    <div className="ml-signals__confidence">
-      <div className="ml-signals__confidence-fill" style={style} />
+    <div className="flex-1 h-2 rounded-full bg-[var(--border)] overflow-hidden">
+      <div className="h-full rounded-full transition-all" style={style} />
     </div>
   )
 }

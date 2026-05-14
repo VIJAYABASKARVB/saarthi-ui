@@ -22,17 +22,19 @@ export default function HistoryDotStrip({ history }: HistoryDotStripProps) {
   const ordered = [...history].reverse()
 
   return (
-    <div className="regime__history">
-      <div className="regime__history-header">Regime History</div>
-      <div className="regime__history-strip">
+    <div className="px-5 py-3 border-t border-[rgba(255,255,255,0.06)] overflow-x-auto">
+      <div className="text-[10px] text-[var(--text-mute)] uppercase tracking-wider mb-2">
+        Regime history
+      </div>
+      <div className="flex gap-1 items-end min-w-fit">
         {ordered.map((h, i) => {
           const color = DOT_COLORS[h.state] ?? "var(--text-dim)"
           const dotStyle: CSSProperties = { background: color }
 
           return (
-            <div key={h.date + i} className="regime__history-dot-group">
-              <div className="regime__history-dot" style={dotStyle} />
-              <span className="regime__history-date">{formatDate(h.date)}</span>
+            <div key={h.date + i} className="flex flex-col items-center gap-0.5">
+              <div className="w-2.5 h-2.5 rounded-full shrink-0" style={dotStyle} />
+              <span className="text-[9px] text-[var(--text-dim)] whitespace-nowrap">{formatDate(h.date)}</span>
             </div>
           )
         })}

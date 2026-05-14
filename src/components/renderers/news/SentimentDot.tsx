@@ -1,3 +1,5 @@
+import { Badge } from "../../ui/badge"
+
 interface SentimentDotProps {
   sentiment: string
   score: number
@@ -13,18 +15,23 @@ function resolveColor(sentiment: string, score: number): string {
 
 function resolveLabel(sentiment: string, score: number): string {
   const color = resolveColor(sentiment, score)
-  if (color === "var(--green)") return "POSITIVE"
-  if (color === "var(--red)") return "NEGATIVE"
-  return "NEUTRAL"
+  if (color === "var(--green)") return "Positive"
+  if (color === "var(--red)") return "Negative"
+  return "Neutral"
 }
 
 export default function SentimentDot({ sentiment, score }: SentimentDotProps) {
   const color = resolveColor(sentiment, score)
   const label = resolveLabel(sentiment, score)
+  const badgeVariant = color === "var(--green)" ? "default" : color === "var(--red)" ? "destructive" : "outline"
+
   return (
-    <span className="news__sentiment">
-      <span className="news__sentiment-dot" style={{ background: color }} />
-      <span className="news__sentiment-label" style={{ color }}>{label}</span>
-    </span>
+    <Badge
+      variant={badgeVariant}
+      className="rounded-full text-[10px] px-2 py-0 shrink-0 font-normal"
+      style={{ background: color === "var(--amber)" ? "transparent" : undefined, borderColor: color, color }}
+    >
+      {label}
+    </Badge>
   )
 }
