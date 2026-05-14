@@ -1,5 +1,7 @@
 # Saarthi UI
 
+live-link:https://saarthi-ui-iota.vercel.app/
+
 Adaptive output renderer for Crypto Prism's NL-to-SQL crypto analytics agent.
 
 ## Quick start
