@@ -10,11 +10,11 @@ export default function ConfidenceBar({ value, color }: ConfidenceBarProps) {
   const style: CSSProperties = { width: `${pct}%`, background: color }
 
   return (
-    <div className="regime__confidence">
-      <div className="regime__confidence-track">
-        <div className="regime__confidence-fill" style={style} />
+    <div>
+      <div className="w-full h-2 rounded-full bg-[var(--border)] overflow-hidden">
+        <div className="h-full rounded-full transition-all" style={style} />
       </div>
-      <div className="regime__confidence-label" style={{ color }}>{pct.toFixed(0)}%</div>
+      <div className="text-right text-xs font-mono mt-1" style={{ color }}>{pct.toFixed(0)}%</div>
     </div>
   )
 }
