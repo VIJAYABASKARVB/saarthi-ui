@@ -6,6 +6,7 @@ import MlSignalsRenderer from './renderers/MlSignalsRenderer'
 import MarketRegimeRenderer from './renderers/MarketRegimeRenderer'
 import NewsRenderer from './renderers/NewsRenderer'
 import CoinDetailRenderer from './renderers/CoinDetailRenderer'
+import CompositeRenderer from './renderers/CompositeRenderer'
 
 interface OutputCanvasProps {
   response: DashboardResponse | null
@@ -62,17 +63,8 @@ function SuccessState({ response }: { response: DashboardResponse & { success: t
       return <NewsRenderer response={response} />
     case "coin_detail":
       return <CoinDetailRenderer response={response} />
-    default:
-      return (
-        <div className="output-canvas__success">
-          <div className="placeholder-renderer">
-            <span className="placeholder-renderer__bracket">[</span>
-            {response.response_type.replace(/_/g, " ").toUpperCase()}
-            <span className="placeholder-renderer__bracket">]</span>
-            <span className="placeholder-renderer__text"> RENDERER — {response.row_count} rows</span>
-          </div>
-        </div>
-      )
+    case "composite":
+      return <CompositeRenderer response={response} />
   }
 }
 
