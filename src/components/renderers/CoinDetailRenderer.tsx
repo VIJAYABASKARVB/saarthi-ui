@@ -13,7 +13,7 @@ export default function CoinDetailRenderer({ response }: CoinDetailRendererProps
   const { symbol, name, cmc_rank, price, market_cap, changes, metrics, on_chain, price_history, latest_signal } = data
 
   return (
-    <div className="coin-detail">
+    <div className="card-glass rounded-xl overflow-hidden" style={{ borderTop: "2px solid rgba(124,92,255,0.3)" }}>
       <CoinHero
         symbol={symbol}
         name={name}
@@ -22,7 +22,7 @@ export default function CoinDetailRenderer({ response }: CoinDetailRendererProps
         market_cap={market_cap}
         changes={changes}
       />
-      <div className="coin-detail__body">
+      <div className="flex flex-col md:flex-row border-b border-[rgba(255,255,255,0.06)]">
         <SignalCallout direction={latest_signal.direction} confidence={latest_signal.confidence} />
         <MetricsGrid metrics={metrics} on_chain={on_chain} />
       </div>
