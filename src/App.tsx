@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { loadMock } from './lib/mockLoader'
 import QueryInput from './components/QueryInput'
 import OutputCanvas from './components/OutputCanvas'
+import { Separator } from './components/ui/separator'
 import type { DashboardResponse } from './types/api'
 
 const MOCK_MAP: Record<string, string> = {
@@ -37,9 +38,13 @@ function App() {
   return (
     <div className="app">
       <header className="app__header">
-        <span className="app__title">SAARTHI</span>
-        <span className="app__subtitle">crypto analytics terminal</span>
+        <div className="app__header-left">
+          <div className="app__logomark">S</div>
+          <span className="app__title">Saarthi</span>
+        </div>
+        <span className="app__subtitle">Powered by Saarthi AI</span>
       </header>
+      <Separator className="mb-6 !bg-transparent" />
       <QueryInput onSubmit={handleSubmit} />
       <OutputCanvas response={response} isLoading={isLoading} query={lastQuery} />
     </div>
