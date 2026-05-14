@@ -12,7 +12,7 @@ export default function SparklineCell({ data }: SparklineCellProps) {
   const points = data.map((v, i) => ({ i, v }))
   const first = data[0]
   const last = data[data.length - 1]
-  const color = last >= first ? "var(--green)" : "var(--red)"
+  const color = last > first ? "var(--green)" : "var(--red)"
 
   return (
     <div className="screener-sparkline">

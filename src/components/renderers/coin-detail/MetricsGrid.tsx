@@ -7,8 +7,12 @@ interface MetricsGridProps {
 }
 
 function displayValue(label: string, value: number): { text: string; color?: string } {
-  if (label === "distance_from_ath_pct" || label === "distance_from_atl_pct") {
+  if (label === "distance_from_ath_pct") {
     return { text: formatInfinitePercent(value) }
+  }
+  if (label === "distance_from_atl_pct") {
+    const signed = value > 0 ? "+" : ""
+    return { text: signed + value.toFixed(1) + "%" }
   }
   if (label === "turnover") return { text: value.toFixed(3) }
   if (label === "prism_score") return { text: value.toFixed(1) }
