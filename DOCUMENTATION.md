@@ -95,7 +95,7 @@ Commit cadence: ~1 commit per 20-30 minutes during active work, longer gaps betw
 ## 12. Quick-start
 
 ```bash
-git clone <repo>
+git clone https://github.com/VIJAYABASKARVB/saarthi-ui.git
 cd saarthi-ui
 npm install
 npm run dev
