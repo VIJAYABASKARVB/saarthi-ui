@@ -3,6 +3,7 @@ import { loadMock } from './lib/mockLoader'
 import QueryInput from './components/QueryInput'
 import OutputCanvas from './components/OutputCanvas'
 import { Separator } from './components/ui/separator'
+import { BGPattern } from './components/ui/bg-pattern'
 import type { DashboardResponse } from './types/api'
 
 const MOCK_MAP: Record<string, string> = {
@@ -36,8 +37,11 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <header className="app__header">
+    <div className="relative min-h-screen">
+      <BGPattern variant="grid" mask="fade-edges" fill="rgba(124,92,255,0.08)" size={32} />
+      <BGPattern variant="dots" mask="fade-center" fill="rgba(0,212,168,0.04)" size={48} />
+      <div className="app">
+        <header className="app__header">
         <div className="app__header-left">
           <div className="app__logomark">S</div>
           <span className="app__title">Saarthi</span>
@@ -47,6 +51,7 @@ function App() {
       <Separator className="mb-6 !bg-transparent" />
       <QueryInput onSubmit={handleSubmit} />
       <OutputCanvas response={response} isLoading={isLoading} query={lastQuery} />
+      </div>
     </div>
   )
 }
