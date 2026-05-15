@@ -16,11 +16,12 @@ export default function RegimeState({ state, confidence }: RegimeStateProps) {
   const color = STATE_COLORS[state] ?? "var(--text)"
 
   return (
-    <div className="text-center px-4 pt-8 pb-4">
-      <div className="text-[40px] font-bold tracking-wider mb-4" style={{ color }}>
+    <div className="regime__hero">
+      <div className="regime__hero-orb regime__hero-orb--active" style={{ "--orb-color": color } as React.CSSProperties} />
+      <div className="regime__hero-text" style={{ color }}>
         {state.toUpperCase()}
       </div>
-      <div className="max-w-md mx-auto">
+      <div className="regime__confidence">
         <ConfidenceBar value={confidence} color={color} />
       </div>
     </div>
