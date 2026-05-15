@@ -65,9 +65,9 @@ function SignalsSkeleton() {
           </div>
           <div className="ml-signals__probability">
             <div className="ml-signals__probability-bar">
-              <div className="ml-signals__probability-segment" style={{ width: "60%", background: "#1a1a1a" }} />
-              <div className="ml-signals__probability-segment" style={{ width: "25%", background: "#1a1a1a" }} />
-              <div className="ml-signals__probability-segment" style={{ width: "15%", background: "#1a1a1a" }} />
+              <div className="ml-signals__probability-segment" style={{ width: "60%", background: "rgba(255, 255, 255, 0.04)" }} />
+              <div className="ml-signals__probability-segment" style={{ width: "25%", background: "rgba(255, 255, 255, 0.04)" }} />
+              <div className="ml-signals__probability-segment" style={{ width: "15%", background: "rgba(255, 255, 255, 0.04)" }} />
             </div>
           </div>
           <div className="ml-signals__features" style={{ borderTop: "1px solid var(--border)" }}>
@@ -119,7 +119,7 @@ function RegimeSkeleton() {
         <div className="regime__history-strip">
           {Array.from({ length: 10 }).map((_, i) => (
             <div key={i} className="regime__history-dot-group">
-              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "#1a1a1a" }} />
+              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255, 255, 255, 0.04)" }} />
               <Bar width="20px" height={8} />
             </div>
           ))}
@@ -175,7 +175,7 @@ function CoinDetailSkeleton() {
         <div className="coin-detail__signal-column">
           <Bar width="90px" height={9} style={{ marginBottom: 8 }} />
           <Bar width="50px" height={16} style={{ marginBottom: 8 }} />
-          <div style={{ height: 6, background: "#1a1a1a", borderRadius: 2 }} />
+          <div style={{ height: 6, background: "rgba(255, 255, 255, 0.04)", borderRadius: 9999 }} />
           <Bar width="80px" height={10} style={{ marginTop: 4 }} />
         </div>
         <div className="coin-detail__metrics-column">
@@ -227,5 +227,11 @@ const SKELETON_VARIANTS: Record<string, () => ReactNode> = {
 
 export default function SkeletonLoader({ type }: SkeletonLoaderProps) {
   const Variant = SKELETON_VARIANTS[type] ?? SKELETON_VARIANTS.default
-  return <Variant />
+  return (
+    <div className="bezel-shell animate-fade-up">
+      <div className="bezel-core">
+        <Variant />
+      </div>
+    </div>
+  )
 }
