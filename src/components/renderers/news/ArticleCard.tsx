@@ -1,8 +1,8 @@
-import { useState } from "react"
+import { useState, useRef, useEffect } from "react"
 import type { NewsArticle } from "../../../types/api"
-import { Badge } from "../../ui/badge"
 import SentimentDot from "./SentimentDot"
 import RelativeTime from "./RelativeTime"
+import RelatedCoinTags from "./RelatedCoinTags"
 
 interface ArticleCardProps {
   article: NewsArticle
@@ -10,16 +10,27 @@ interface ArticleCardProps {
 
 export default function ArticleCard({ article }: ArticleCardProps) {
   const [expanded, setExpanded] = useState(false)
+  const summaryRef = useRef<HTMLDivElement>(null)
   const { headline, source, published_at, sentiment, sentiment_score, related_coins, summary } = article
+
+  useEffect(() => {
+    if (summaryRef.current) {
+      summaryRef.current.style.maxHeight = expanded ? `${summaryRef.current.scrollHeight}px` : "0px"
+    }
+  }, [expanded])
 
   return (
     <div
-      className="px-5 py-3 border-b border-[rgba(255,255,255,0.06)] last:border-b-0 transition-all duration-150 hover:shadow-[inset_2px_0_0_var(--accent)] hover:bg-[rgba(124,92,255,0.04)] cursor-pointer"
+      className="news__card"
       onClick={() => setExpanded(prev => !prev)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setExpanded(prev => !prev) } }}
+      aria-expanded={expanded}
     >
-      <div className="flex items-start justify-between gap-3 mb-1">
+      <div className="news__card-top">
         <button
-          className="flex-1 text-left bg-transparent border-none p-0 text-sm font-medium text-[var(--text)] leading-normal cursor-pointer truncate"
+          className="news__headline"
           onClick={e => e.stopPropagation()}
           aria-expanded={expanded}
           title={headline}
@@ -28,25 +39,19 @@ export default function ArticleCard({ article }: ArticleCardProps) {
         </button>
         <SentimentDot sentiment={sentiment} score={sentiment_score} />
       </div>
-      <div className="flex items-center justify-between">
-        <span className="text-xs text-[var(--text-mute)]">
-          {source}<span className="mx-1">&middot;</span><RelativeTime iso={published_at} />
+      <div className="news__card-bottom">
+        <span className="news__source-age">
+          {source}<span className="news__separator">&middot;</span><RelativeTime iso={published_at} />
         </span>
-        {related_coins.length > 0 && (
-          <div className="flex gap-1">
-            {related_coins.slice(0, 3).map(coin => (
-              <Badge key={coin} variant="outline" className="text-[10px] px-1.5 py-0 rounded-full text-[var(--text-mute)]">
-                {coin}
-              </Badge>
-            ))}
-          </div>
-        )}
+        <RelatedCoinTags coins={related_coins} />
       </div>
-      {expanded && (
-        <div className="mt-2 text-xs text-[var(--text-dim)] leading-relaxed line-clamp-3">
-          {summary}
-        </div>
-      )}
+      <div
+        ref={summaryRef}
+        className="news__summary-wrapper"
+        style={{ maxHeight: 0, overflow: "hidden", transition: "max-height 0.4s var(--ease-spring)" }}
+      >
+        <div className="news__summary">{summary}</div>
+      </div>
     </div>
   )
 }

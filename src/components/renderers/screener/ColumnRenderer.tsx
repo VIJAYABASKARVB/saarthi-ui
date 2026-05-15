@@ -78,12 +78,12 @@ export default function ColumnRenderer({ column, row, density }: ColumnRendererP
         <div className={cellCls}>
           <span
             className={
-              "inline-flex items-center rounded-full text-xs font-mono font-medium px-2.5 py-0.5 " +
+              "inline-flex items-center rounded-full text-xs font-mono font-medium px-2.5 py-0.5 border " +
               (isPos
-                ? "bg-[rgba(0,212,168,0.15)] text-[#00d4a8] border border-[rgba(0,212,168,0.3)]"
+                ? "bg-[rgba(0,212,168,0.1)] text-[var(--green)] border-[rgba(0,212,168,0.25)]"
                 : isNeg
-                ? "bg-[rgba(255,107,107,0.15)] text-[#ff6b6b] border border-[rgba(255,107,107,0.3)]"
-                : "text-[var(--text-dim)] border border-[var(--border)]")
+                ? "bg-[rgba(255,107,107,0.1)] text-[var(--red)] border-[rgba(255,107,107,0.25)]"
+                : "text-[var(--text-dim)] border-[var(--border)]")
             }
           >
             {text}
