@@ -9,7 +9,10 @@ interface ScreenerRowProps {
 
 export default function ScreenerRowComponent({ row, columns, density }: ScreenerRowProps) {
   return (
-    <tr className="screener-row border-b border-[rgba(255,255,255,0.06)] last:border-b-0">
+    <tr
+      className="screener-row border-b border-[var(--border)] last:border-b-0"
+      style={{ transition: "background 0.3s var(--ease-spring)" }}
+    >
       {columns.map((col, i) => (
         <td
           key={col.key}

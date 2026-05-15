@@ -11,7 +11,7 @@ interface ScreenerHeaderProps {
 export default function ScreenerHeader({ columns, sortKey, sortDir, onSort }: ScreenerHeaderProps) {
   return (
     <thead>
-      <tr>
+      <tr className="border-b border-[var(--border)] bg-[var(--bg-card)]/80 backdrop-blur-sm">
         {columns.map((col, i) => {
           const isActive = sortKey === col.key
           return (
@@ -21,7 +21,7 @@ export default function ScreenerHeader({ columns, sortKey, sortDir, onSort }: Sc
             >
               <button
                 className={
-                  "flex items-center gap-1 py-3 text-[11px] font-medium tracking-[0.08em] uppercase cursor-pointer transition-colors " +
+                  "flex items-center gap-1 py-3 text-[11px] font-semibold tracking-[0.08em] uppercase cursor-pointer transition-colors " +
                   (isActive ? "text-[var(--accent)]" : "text-[var(--text-mute)] hover:text-[var(--text-dim)]")
                 }
                 onClick={() => onSort(col.key)}

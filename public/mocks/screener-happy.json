@@ -18,14 +18,14 @@
       { "key": "spark_7d", "label": "7 Day Trend", "type": "sparkline", "is_default": true }
     ],
     "rows": [
-      { "slug": "immutable-x", "name": "Immutable X", "symbol": "IMX", "price": 1.24, "percent_change24h": -3.42, "market_cap": 1840000000, "logo_url": "https://assets.coingecko.com/coins/images/17233/thumb/imx.png", "spark_7d": [1.58, 1.52, 1.48, 1.42, 1.38, 1.31, 1.24] },
-      { "slug": "optimism", "name": "Optimism", "symbol": "OP", "price": 1.87, "percent_change24h": -2.18, "market_cap": 1520000000, "logo_url": "https://assets.coingecko.com/coins/images/25244/thumb/OP.png", "spark_7d": [2.23, 2.18, 2.09, 2.01, 1.96, 1.91, 1.87] },
+      { "slug": "immutable-x", "name": "Immutable X", "symbol": "IMX", "price": 1.24, "percent_change24h": 3.42, "market_cap": 1840000000, "logo_url": "https://assets.coingecko.com/coins/images/17233/thumb/imx.png", "spark_7d": [1.11, 1.15, 1.18, 1.20, 1.22, 1.23, 1.24] },
+      { "slug": "optimism", "name": "Optimism", "symbol": "OP", "price": 1.87, "percent_change24h": 5.18, "market_cap": 1520000000, "logo_url": "https://assets.coingecko.com/coins/images/25244/thumb/OP.png", "spark_7d": [1.51, 1.55, 1.62, 1.70, 1.78, 1.83, 1.87] },
       { "slug": "celestia", "name": "Celestia", "symbol": "TIA", "price": 5.63, "percent_change24h": -5.71, "market_cap": 1180000000, "logo_url": "https://assets.coingecko.com/coins/images/31967/thumb/tia.jpg", "spark_7d": [7.12, 6.84, 6.51, 6.22, 5.98, 5.81, 5.63] },
-      { "slug": "injective", "name": "Injective", "symbol": "INJ", "price": 11.34, "percent_change24h": -4.05, "market_cap": 1070000000, "logo_url": "https://assets.coingecko.com/coins/images/18282/thumb/inj.png", "spark_7d": [14.21, 13.87, 13.22, 12.64, 12.11, 11.78, 11.34] },
+      { "slug": "injective", "name": "Injective", "symbol": "INJ", "price": 11.34, "percent_change24h": 12.05, "market_cap": 1070000000, "logo_url": "https://assets.coingecko.com/coins/images/18282/thumb/inj.png", "spark_7d": [9.21, 9.87, 10.22, 10.64, 10.91, 11.18, 11.34] },
       { "slug": "dydx", "name": "dYdX", "symbol": "DYDX", "price": 1.52, "percent_change24h": -6.33, "market_cap": 856000000, "logo_url": "https://assets.coingecko.com/coins/images/24441/thumb/dydx.png", "spark_7d": [2.01, 1.94, 1.87, 1.78, 1.69, 1.61, 1.52] },
       { "slug": "zilliqa", "name": "Zilliqa", "symbol": "ZIL", "price": 0.0284, "percent_change24h": -1.97, "market_cap": 524000000, "logo_url": "https://assets.coingecko.com/coins/images/2687/thumb/ZIL.png", "spark_7d": [0.0331, 0.0322, 0.0314, 0.0305, 0.0298, 0.0291, 0.0284] },
       { "slug": "superfarm", "name": "SuperFarm", "symbol": "SUPER", "price": 0.412, "percent_change24h": -8.44, "market_cap": 189000000, "logo_url": "https://assets.coingecko.com/coins/images/14040/thumb/SUPER.png", "spark_7d": [0.538, 0.511, 0.494, 0.472, 0.448, 0.431, 0.412] },
-      { "slug": "api3", "name": "API3", "symbol": "API3", "price": 1.76, "percent_change24h": -2.86, "market_cap": 152000000, "logo_url": "https://assets.coingecko.com/coins/images/13256/thumb/api3.jpg", "spark_7d": [2.11, 2.05, 1.98, 1.91, 1.86, 1.81, 1.76] }
+      { "slug": "api3", "name": "API3", "symbol": "API3", "price": 1.76, "percent_change24h": 8.86, "market_cap": 152000000, "logo_url": "https://assets.coingecko.com/coins/images/13256/thumb/api3.jpg", "spark_7d": [1.21, 1.25, 1.38, 1.41, 1.56, 1.61, 1.76] }
     ]
   }
 }
