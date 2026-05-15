@@ -10,18 +10,18 @@ export default function NewsRenderer({ response }: NewsRendererProps) {
   const { articles } = data
 
   return (
-    <div className="card-glass rounded-xl overflow-hidden" style={{ borderTop: "2px solid rgba(124,92,255,0.3)" }}>
-      <div className="px-5 py-3 border-b border-[rgba(255,255,255,0.06)] text-xs text-[var(--text-mute)] tracking-wider">
-        News feed &middot; {row_count} article{row_count !== 1 ? "s" : ""}
-      </div>
-
-      {articles.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 text-xs text-[var(--text-mute)] tracking-wider">
-          No articles
+    <div className="bezel-shell animate-fade-up stagger-1">
+      <div className="bezel-core">
+        <div className="news__meta">
+          News feed &middot; {row_count} article{row_count !== 1 ? "s" : ""}
         </div>
-      ) : (
-        articles.map(a => <ArticleCard key={a.id} article={a} />)
-      )}
+
+        {articles.length === 0 ? (
+          <div className="news__empty">NO ARTICLES</div>
+        ) : (
+          articles.map(a => <ArticleCard key={a.id} article={a} />)
+        )}
+      </div>
     </div>
   )
 }
