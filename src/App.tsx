@@ -1,9 +1,9 @@
 import { useState } from 'react'
+
 import { loadMock } from './lib/mockLoader'
-import QueryInput from './components/QueryInput'
+
 import OutputCanvas from './components/OutputCanvas'
-import { Separator } from './components/ui/separator'
-import { BGPattern } from './components/ui/bg-pattern'
+import IdleScreen from './components/IdleScreen'
 import type { DashboardResponse } from './types/api'
 
 const MOCK_MAP: Record<string, string> = {
@@ -37,20 +37,24 @@ function App() {
   }
 
   return (
-    <div className="relative min-h-screen">
-      <BGPattern variant="grid" mask="fade-edges" fill="rgba(124,92,255,0.08)" size={32} />
-      <BGPattern variant="dots" mask="fade-center" fill="rgba(0,212,168,0.04)" size={48} />
-      <div className="app">
-        <header className="app__header">
-        <div className="app__header-left">
-          <div className="app__logomark">S</div>
-          <span className="app__title">Saarthi</span>
+    <div className="min-h-screen relative">
+      <div className="mesh-orb mesh-orb--purple" />
+      <div className="mesh-orb mesh-orb--emerald" />
+      <div className="mesh-orb mesh-orb--accent" />
+
+      <nav className="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+        <div className="bg-[rgba(13,13,18,0.7)] backdrop-blur-[24px] border border-[rgba(255,255,255,0.08)] rounded-full px-6 py-2.5 flex items-center gap-4 animate-fade-in">
+          <span className="text-sm font-semibold text-[var(--text)] tracking-tight">Saarthi</span>
+          <span className="w-px h-4 bg-[rgba(255,255,255,0.08)]" />
+          <span className="text-[10px] text-[var(--text-mute)] tracking-wide">Powered by Saarthi AI</span>
         </div>
-        <span className="app__subtitle">Powered by Saarthi AI</span>
-      </header>
-      <Separator className="mb-6 !bg-transparent" />
-      <QueryInput onSubmit={handleSubmit} />
-      <OutputCanvas response={response} isLoading={isLoading} query={lastQuery} />
+      </nav>
+
+      <div className="pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <IdleScreen onSubmit={handleSubmit} />
+        <div className="mt-8">
+          <OutputCanvas response={response} isLoading={isLoading} query={lastQuery} />
+        </div>
       </div>
     </div>
   )
