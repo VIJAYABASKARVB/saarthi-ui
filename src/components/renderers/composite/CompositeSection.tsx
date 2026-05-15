@@ -6,7 +6,6 @@ import type {
   NewsData,
   CoinDetailData,
 } from "../../../types/api"
-import { Separator } from "../../ui/separator"
 import ScreenerRenderer from "../ScreenerRenderer"
 import MlSignalsRenderer from "../MlSignalsRenderer"
 import MarketRegimeRenderer from "../MarketRegimeRenderer"
@@ -53,7 +52,7 @@ export default function CompositeSection({ section }: CompositeSectionProps) {
   return (
     <div>
       <SectionHeader title={title} type={response_type} />
-      <Separator className="mb-4" />
+      <div className="my-4 mx-4 h-px bg-[var(--border)]" />
       {inner}
     </div>
   )
