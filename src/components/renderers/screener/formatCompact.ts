@@ -5,3 +5,13 @@ export function formatCompact(n: number): string {
   if (n >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M"
   return "< $1M"
 }
+
+export function formatCurrency(n: number): string {
+  return "$" + n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+export function formatPercentText(n: number): string {
+  if (n > 0) return "+" + n.toFixed(2) + "%"
+  if (n < 0) return n.toFixed(2) + "%"
+  return "0.00%"
+}
