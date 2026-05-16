@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from "react"
 import { TrendingUp, TrendingDown, Minus } from "lucide-react"
 import type { MLSignal } from "../../../types/api"
 import ProbabilityBar from "./ProbabilityBar"
@@ -33,20 +34,32 @@ export default function SignalCard({ signal, index }: SignalCardProps) {
   const lowConf = confidence < 0.3
   const stagger = STAGGER_CLASSES[index % STAGGER_CLASSES.length]
 
+  const handleKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Enter" || e.key === " ") {
+      const el = e.currentTarget
+      el.style.transform = "scale(0.98)"
+      setTimeout(() => { el.style.transform = "scale(1)" }, 150)
+    }
+  }
+
   return (
     <div
       className={`bezel-shell--sm animate-fade-up ${stagger}`}
       style={{ transition: "transform 0.3s var(--ease-spring)" }}
+      tabIndex={0}
+      role="button"
+      aria-label={`${symbol}: ${direction} signal, score ${signal_score.toFixed(1)}`}
       onMouseDown={e => { e.currentTarget.style.transform = "scale(0.98)" }}
       onMouseUp={e => { e.currentTarget.style.transform = "scale(1)" }}
       onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)" }}
+      onKeyDown={handleKeyDown}
     >
-      <div className="bezel-core--sm" style={{ background: "var(--bg-card)", padding: "1.25rem" }}>
+      <div className="bezel-core--sm signal-card__core" style={{ background: "var(--bg-card)" }}>
         <div className="flex items-start justify-between mb-4">
           <div>
             <div className="text-2xl font-semibold text-[var(--text)] mb-0.5" style={{ fontFamily: "'Geist Variable', system-ui, sans-serif" }}>{symbol}</div>
             <div className="text-sm text-[var(--text-mute)] mb-2">{name}</div>
-            <div className="text-lg font-mono font-semibold text-[var(--text)] mb-1.5">{formatPrice(price)}</div>
+            <div className="text-xl font-mono font-bold text-[var(--text)] mb-1.5">{formatPrice(price)}</div>
             <div>
               <span
                 className="inline-flex items-center rounded-full text-sm font-semibold px-3 py-1"
@@ -57,7 +70,7 @@ export default function SignalCard({ signal, index }: SignalCardProps) {
             </div>
           </div>
           <div
-            className="rounded-full px-4 py-2 text-sm font-semibold tracking-wide"
+            className="rounded-full px-5 py-2.5 text-base font-bold tracking-wide"
             style={{
               border: `1px solid ${dir.color}66`,
               color: dir.color,
@@ -74,11 +87,19 @@ export default function SignalCard({ signal, index }: SignalCardProps) {
         <div className="mb-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-[11px] uppercase tracking-wider text-[var(--text-mute)]">Signal Score</span>
-            <span className="text-[28px] font-semibold font-mono" style={{ color: dir.color }}>
+            <span className="text-[40px] font-bold font-mono leading-none" style={{ color: dir.color }}>
               {signal_score.toFixed(1)}
             </span>
           </div>
-          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+          <div
+            className="h-[5px] rounded-full overflow-hidden"
+            style={{ background: "var(--track-bg)" }}
+            role="progressbar"
+            aria-valuenow={Math.round(Math.min(signal_score, 100))}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Signal score"
+          >
             <div
               className="h-full rounded-full transition-all"
               style={{
@@ -97,7 +118,15 @@ export default function SignalCard({ signal, index }: SignalCardProps) {
               {(confidence * 100).toFixed(0)}%
             </span>
           </div>
-          <div className="h-[3px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+          <div
+            className="h-[5px] rounded-full overflow-hidden"
+            style={{ background: "var(--track-bg)" }}
+            role="progressbar"
+            aria-valuenow={Math.round(confidence * 100)}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-label="Confidence"
+          >
             <div
               className="h-full rounded-full transition-all"
               style={{ width: `${confidence * 100}%`, background: dir.color, transitionTimingFunction: "var(--ease-spring)" }}

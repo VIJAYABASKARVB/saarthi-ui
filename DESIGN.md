@@ -9,13 +9,14 @@ colors:
   border-hover: "rgba(255, 255, 255, 0.12)"
   accent: "#7c5cff"
   accent-glow: "rgba(124, 92, 255, 0.15)"
-  accent-2: "#00d4a8"
-  green: "#00d4a8"
+  accent-2: "#22c55e"
+  green: "#22c55e"
   red: "#ff6b6b"
   amber: "#ffb547"
   text: "#e7ecf3"
   text-dim: "#9aa3b2"
   text-mute: "#6b7385"
+  track-bg: "rgba(255, 255, 255, 0.06)"
   ease-spring: "cubic-bezier(0.32, 0.72, 0, 1)"
   ease-smooth: "cubic-bezier(0.4, 0, 0.2, 1)"
 typography:
@@ -134,7 +135,7 @@ crafted into market insight. OLED black `#050505` forms the deep workbench surfa
 inside glass enclosures -- Vantablack cards with soft `24px` blur and hairline borders
 (`rgba(255, 255, 255, 0.06)`) that feel machined rather than painted on. The single accent --
 Violet Surge `#7c5cff` -- is used with precision: it signals active state, primary actions, and
-data that demands attention. Jade Stream `#00d4a8` carries positive direction, Coral `#ff6b6b`
+data that demands attention. Signal Green `#22c55e` carries positive direction, Coral `#ff6b6b`
 negative, and Amber `#ffb547` neutral or cautionary states.
 
 The system rejects the generic crypto dashboard: no neon gradients, no glowing orb backgrounds,
@@ -164,7 +165,7 @@ avoided -- even the red and green signals stay in a calm mid-saturation range.
   loading indicators, and focus rings. Never decorative. Always purposeful.
 
 ### Secondary
-- **Jade Stream** (`#00d4a8`): Positive direction. Price increases, buy signals, upward trends,
+- **Signal Green** (`#22c55e`): Positive direction. Price increases, buy signals, upward trends,
   risk-on regimes.
 - **Coral** (`#ff6b6b`): Negative direction. Price decreases, sell signals, downward trends,
   risk-off regimes.
@@ -305,7 +306,7 @@ renderer and input surface uses it.
   curve. No `linear`, no `ease-in-out`.
 - **Do** animate entry via `opacity` + `transform` only. Use the predefined classes
   `.animate-fade-up`, `.animate-fade-in`, `.animate-scale-in`.
-- **Do** use Jade Stream `#00d4a8` for positive direction, Coral `#ff6b6b` for negative,
+- **Do** use Signal Green `#22c55e` for positive direction, Coral `#ff6b6b` for negative,
   Amber Ember `#ffb547` for neutral or cautionary.
 
 ### Don't:
@@ -323,6 +324,7 @@ renderer and input surface uses it.
 - **Don't** use neon gradients, glowing orb backgrounds, or busy indicator overload. This
   is not a generic crypto dashboard.
 - **Don't** animate CSS layout properties. Only `transform` and `opacity`.
-- **Don't** use generic horizontal progress bars for confidence or probability. Use the
-  radial gauge pattern or thin spring-animated bars.
+- **Don't** use thick progress bars for metrics. Use thin (3-5px) spring-animated bars;
+  thickness can increase for hero metrics like signal score (5px), but never exceed 6px
+  for track bars.
 - **Don't** use em dashes in copy. Use commas, colons, semicolons, or periods.

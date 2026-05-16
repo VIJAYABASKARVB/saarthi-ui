@@ -12,13 +12,14 @@
   --border-hover: rgba(255, 255, 255, 0.12);
   --accent: #7c5cff;
   --accent-glow: rgba(124, 92, 255, 0.15);
-  --accent-2: #00d4a8;
-  --green: #00d4a8;
+  --accent-2: #22c55e;
+  --green: #22c55e;
   --red: #ff6b6b;
   --amber: #ffb547;
   --text: #e7ecf3;
   --text-dim: #9aa3b2;
   --text-mute: #6b7385;
+  --track-bg: rgba(255, 255, 255, 0.06);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -396,13 +397,15 @@ body::before {
 }
 
 /* ============================================
-   SCREENER V2 — Bloomberg Terminal Table
+   SCREENER — Glass Table (inside bezel-core)
    ============================================ */
 
-.screener-v2 {
-  border: 1px solid var(--border);
-  background: var(--bg-elevated);
-  font-size: 13px;
+.screener-v2.bezel-shell {
+  border-radius: 8px;
+}
+
+.screener-v2.bezel-shell .bezel-core {
+  border-radius: calc(8px - 1.5px);
 }
 
 /* Toolbar */
@@ -410,9 +413,8 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 12px 20px;
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.015);
 }
 
 .screener-v2__toolbar-left {
@@ -442,13 +444,14 @@ body::before {
 
 .screener-v2__color-bar {
   display: flex;
-  gap: 2px;
+  gap: 3px;
 }
 
 .screener-v2__color-swatch {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   display: block;
+  border-radius: 2px;
 }
 
 .screener-v2__col-dropdown-wrap {
@@ -461,10 +464,12 @@ body::before {
   color: var(--text-dim);
   font-family: inherit;
   font-size: 11px;
-  padding: 4px 12px;
+  padding: 8px 14px;
+  min-height: 44px;
   cursor: pointer;
   letter-spacing: 0.5px;
   transition: all 0.3s var(--ease-spring);
+  border-radius: 9999px;
 }
 
 .screener-v2__col-btn:hover {
@@ -479,42 +484,43 @@ body::before {
 
 .screener-v2__col-dropdown {
   position: absolute;
-  top: calc(100% + 4px);
+  top: calc(100% + 6px);
   right: 0;
   z-index: 20;
   background: var(--bg-card);
   border: 1px solid var(--border);
   padding: 8px 0;
-  min-width: 160px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  min-width: 170px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
 .screener-v2__col-option {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
-  font-size: 11px;
-  color: var(--text-dim);
+  padding: 8px 16px;
+  font-size: 12px;
+  color: var(--text);
   cursor: pointer;
   transition: background 0.2s;
 }
 
 .screener-v2__col-option:hover {
-  background: rgba(255, 255, 255, 0.03);
-  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .screener-v2__col-option input[type="checkbox"] {
-  accent-color: var(--green);
-  width: 12px;
-  height: 12px;
+  accent-color: var(--accent);
+  width: 14px;
+  height: 14px;
   cursor: pointer;
 }
 
 /* Table */
 .screener-v2__table-wrap {
   overflow-x: auto;
+  background: #08080b;
 }
 
 .screener-v2__table {
@@ -526,24 +532,11 @@ body::before {
 /* Header */
 .screener-v2__header-row {
   border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.02);
 }
 
 .screener-v2__header-cell {
   padding: 0;
   white-space: nowrap;
-}
-
-.screener-v2__header-cell--left {
-  text-align: left;
-}
-
-.screener-v2__header-cell--right {
-  text-align: right;
-}
-
-.screener-v2__header-cell--center {
-  text-align: center;
 }
 
 .screener-v2__header-btn {
@@ -559,7 +552,8 @@ body::before {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 12px 16px;
+  padding: 14px 16px;
+  min-height: 44px;
   cursor: pointer;
   white-space: nowrap;
   transition: color 0.25s;
@@ -581,6 +575,7 @@ body::before {
 .screener-v2__header-btn:focus-visible {
   outline: 1px solid var(--accent);
   outline-offset: -1px;
+  border-radius: 4px;
 }
 
 /* Sort arrows (stacked ▲▼) */
@@ -733,22 +728,21 @@ body::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
+  padding: 12px 20px;
   border-top: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.015);
 }
 
 .screener-v2__page-info {
   font-size: 11px;
   font-family: 'JetBrains Mono', monospace;
-  color: var(--text-mute);
+  color: var(--text-dim);
   letter-spacing: 0.3px;
 }
 
 .screener-v2__page-controls {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
 
 .screener-v2__page-btn {
@@ -757,9 +751,15 @@ body::before {
   color: var(--text-dim);
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
-  padding: 4px 10px;
+  padding: 8px 14px;
+  min-height: 44px;
+  min-width: 44px;
   cursor: pointer;
   transition: all 0.2s;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .screener-v2__page-btn:hover:not(:disabled) {
@@ -782,6 +782,81 @@ body::before {
 .screener-v2__page-btn:focus-visible {
   outline: 1px solid var(--accent);
   outline-offset: 1px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .screener-v2__toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 14px;
+  }
+
+  .screener-v2__toolbar-left {
+    justify-content: space-between;
+  }
+
+  .screener-v2__toolbar-right {
+    justify-content: space-between;
+  }
+
+  .screener-v2__color-bar {
+    display: none;
+  }
+
+  .screener-v2__pagination {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .screener-v2__page-controls {
+    gap: 3px;
+  }
+
+  .screener-v2__page-btn {
+    min-width: 38px;
+    padding: 6px 10px;
+  }
+
+  .screener-v2__cell {
+    padding: 10px 10px;
+  }
+
+  .screener-v2__header-btn {
+    padding: 10px 10px;
+  }
+
+  .screener-v2__stock-icon,
+  .screener-v2__stock-icon-placeholder {
+    width: 22px;
+    height: 22px;
+  }
+
+  .screener-v2__stock-name {
+    font-size: 12px;
+  }
+}
+
+/* ML Signals responsive */
+.signal-card__core {
+  padding: 1.5rem;
+}
+
+@media (max-width: 640px) {
+  .signal-card__core {
+    padding: 1rem;
+  }
+
+  .signal-card__core .mb-4 {
+    margin-bottom: 0.75rem;
+  }
+
+  .ml-signals__feature-name {
+    width: 120px;
+    max-width: 120px;
+  }
 }
 
 /* ML Signals */
@@ -979,7 +1054,7 @@ body::before {
 .ml-signals__feature-track {
   flex: 1;
   height: 3px;
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--track-bg);
   position: relative;
   overflow: hidden;
   border-radius: 2px;
