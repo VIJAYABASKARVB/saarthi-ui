@@ -21,70 +21,46 @@ export default function HistoryTimeline({ history }: HistoryTimelineProps) {
   if (history.length === 0) return null
 
   const ordered = [...history].reverse()
+  const totalDays = ordered.length
 
-  // Group consecutive same-state entries
-  type Segment = { state: string; days: number; startDate: string; endDate: string }
+  type Segment = { state: string; days: number }
   const segments: Segment[] = []
   for (const h of ordered) {
     const last = segments[segments.length - 1]
     if (last && last.state === h.state) {
       last.days += 1
-      last.endDate = h.date
     } else {
-      segments.push({ state: h.state, days: 1, startDate: h.date, endDate: h.date })
+      segments.push({ state: h.state, days: 1 })
     }
   }
 
-  const totalDays = ordered.length
-
   return (
-    <div className="mr2__history">
-      <div className="mr2__history-header">
-        <span className="mr2__history-header-label">REGIME HISTORY</span>
-        <span className="mr2__history-header-range">
+    <div className="px-6 py-4 border-t border-[rgba(255,255,255,0.06)]">
+      <div className="flex items-center justify-between mb-2">
+        <span className="font-mono text-xs text-[var(--text-mute)] uppercase tracking-wider">
+          Regime History
+        </span>
+        <span className="font-mono text-xs text-[var(--text-mute)] tabular-nums">
           {formatDate(ordered[0].date)} — {formatDate(ordered[ordered.length - 1].date)}
         </span>
       </div>
-
-      {/* Segmented heatmap strip */}
-      <div className="mr2__history-strip">
+      <div className="flex h-3 gap-px overflow-hidden">
         {segments.map((seg, i) => {
           const widthPct = (seg.days / totalDays) * 100
-          const color = STATE_COLORS[seg.state] ?? "var(--text-dim)"
+          const segColor = STATE_COLORS[seg.state] ?? "var(--text-dim)"
           return (
             <div
               key={`${seg.state}-${i}`}
-              className="mr2__history-strip-seg"
-              style={{ width: `${widthPct}%`, background: color }}
-              title={`${seg.state}: ${seg.days}d (${formatDate(seg.startDate)} – ${formatDate(seg.endDate)})`}
+              className="transition-opacity duration-300 hover:opacity-100"
+              style={{
+                width: `${widthPct}%`,
+                background: segColor,
+                opacity: 0.65,
+              }}
+              title={`${seg.state}: ${seg.days}d`}
             />
           )
         })}
-      </div>
-
-      {/* Day-by-day dots below */}
-      <div className="mr2__history-dots">
-        {ordered.map((h, i) => {
-          const color = STATE_COLORS[h.state] ?? "var(--text-dim)"
-          return (
-            <div
-              key={h.date + i}
-              className="mr2__history-dot"
-              style={{ background: color }}
-              title={`${formatDate(h.date)}: ${h.state}`}
-            />
-          )
-        })}
-      </div>
-
-      {/* Legend */}
-      <div className="mr2__history-legend">
-        {Object.entries(STATE_COLORS).map(([state, color]) => (
-          <span key={state} className="mr2__history-legend-item">
-            <span className="mr2__history-legend-dot" style={{ background: color }} />
-            {state}
-          </span>
-        ))}
       </div>
     </div>
   )

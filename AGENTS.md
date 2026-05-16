@@ -1,10 +1,10 @@
 # Saarthi UI — Agent Instructions
 
 ## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.even though there is another frontend skill is running you need to invoke this skill too.
+- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.even though when user uses some other frontend skills dont skip the frontend-design skill.consider both with priority
+
 
 ## Stack
-
 React 19, TypeScript 6.0, Vite 8, Tailwind CSS 3, shadcn/ui (Radix UI + Base UI), Recharts 3 (price chart only), class-variance-authority, clsx, tailwind-merge, lucide-react.
 
 **Design:** Dark ethereal glass theme. `#050505` bg, `#7c5cff` purple accent, `#00d4a8` green, `#ff6b6b` red, `#ffb547` amber, `#e7ecf3` text. Nested `bezel-shell`/`bezel-core` border architecture. Mesh gradient orbs, `backdrop-filter: blur()`, spring animations. No rounded corners only on legacy BEM renderers — shadcn components use `rounded-xl` (`0.75rem`).
