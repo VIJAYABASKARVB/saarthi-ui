@@ -24,14 +24,22 @@ export default function FeatureContributions({ features }: FeatureContributionsP
               <span className="text-xs text-[var(--text-dim)] truncate w-[140px] shrink-0" title={f.name}>
                 {f.name}
               </span>
-              <div className="flex-1 h-[3px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+              <div
+                className="flex-1 h-[4px] rounded-full overflow-hidden"
+                style={{ background: "var(--track-bg)" }}
+                role="progressbar"
+                aria-valuenow={Math.round(abs * 1000)}
+                aria-valuemin={0}
+                aria-valuemax={Math.round(maxAbs * 1000)}
+                aria-label={f.name + ": " + (isPos ? "+" : "") + f.contribution.toFixed(3)}
+              >
                 {abs > 0 ? (
                   <div className="h-full rounded-full transition-all" style={barStyle} />
                 ) : (
                   <div className="h-full rounded-full transition-all" style={{ width: "2px", background: barColor, opacity: 0.4, transitionTimingFunction: "var(--ease-spring)" }} />
                 )}
               </div>
-              <span className={`text-[11px] font-mono w-12 text-right shrink-0 ${isPos ? "text-[var(--green)]" : isNeg ? "text-[var(--red)]" : "text-[var(--text-dim)]"}`}>
+              <span className={`text-[11px] font-mono font-semibold w-12 text-right shrink-0 ${isPos ? "text-[var(--green)]" : isNeg ? "text-[var(--red)]" : "text-[var(--text-dim)]"}`}>
                 {f.contribution > 0 ? "+" : ""}{f.contribution.toFixed(3)}
               </span>
             </div>

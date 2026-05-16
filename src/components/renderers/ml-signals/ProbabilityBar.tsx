@@ -23,9 +23,19 @@ export default function ProbabilityBar({ probBuy, probHold, probSell }: Probabil
   return (
     <div>
       <div className="text-[11px] uppercase tracking-wider text-[var(--text-mute)] mb-2">Probability Distribution</div>
-      <div className="flex h-[3px] rounded-full overflow-hidden" style={{ background: "rgba(255,255,255,0.06)" }}>
+      <div
+        className="flex h-[3px] rounded-full overflow-hidden"
+        style={{ background: "var(--track-bg)" }}
+        role="img"
+        aria-label={"Probability distribution: " + visible.map(s => s.value + "% " + s.label).join(", ")}
+      >
         {visible.map((seg, i) => (
-          <div key={i} className="h-full transition-all" style={{ width: seg.width, background: seg.color, transitionTimingFunction: "var(--ease-spring)" }} />
+          <div
+            key={i}
+            className="h-full transition-all"
+            style={{ width: seg.width, background: seg.color, transitionTimingFunction: "var(--ease-spring)" }}
+            aria-label={seg.value + "% " + seg.label}
+          />
         ))}
       </div>
       <div className="flex gap-3 mt-1.5">
