@@ -1,14 +1,8 @@
 import type { MarketRegimeHistory } from "../../../types/api"
+import { STATE_COLORS } from "../../../lib/regime"
 
 interface HistoryTimelineProps {
   history: MarketRegimeHistory[]
-}
-
-const STATE_COLORS: Record<string, string> = {
-  "Risk-on": "var(--green)",
-  "Risk-off": "var(--red)",
-  Choppy: "var(--amber)",
-  Transition: "var(--accent)",
 }
 
 function formatDate(iso: string): string {
@@ -34,17 +28,23 @@ export default function HistoryTimeline({ history }: HistoryTimelineProps) {
     }
   }
 
+  const segLabel = segments.map(s => s.state + " " + s.days + "d").join(", ")
+
   return (
-    <div className="px-6 py-4 border-t border-[rgba(255,255,255,0.06)]">
+    <div className="px-6 py-4 border-t border-[var(--border)]">
       <div className="flex items-center justify-between mb-2">
         <span className="font-mono text-xs text-[var(--text-mute)] uppercase tracking-wider">
           Regime History
         </span>
         <span className="font-mono text-xs text-[var(--text-mute)] tabular-nums">
-          {formatDate(ordered[0].date)} — {formatDate(ordered[ordered.length - 1].date)}
+          {formatDate(ordered[0].date)} to {formatDate(ordered[ordered.length - 1].date)}
         </span>
       </div>
-      <div className="flex h-3 gap-px overflow-hidden">
+      <div
+        className="flex h-4 gap-px overflow-hidden"
+        role="img"
+        aria-label={"Regime history: " + segLabel}
+      >
         {segments.map((seg, i) => {
           const widthPct = (seg.days / totalDays) * 100
           const segColor = STATE_COLORS[seg.state] ?? "var(--text-dim)"
