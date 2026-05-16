@@ -1276,10 +1276,7 @@ body::before {
   transition: border-color 0.4s var(--ease-spring), color 0.4s var(--ease-spring);
 }
 
-.coin-detail__rank:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
+
 
 .coin-detail__name {
   font-size: 12px;
@@ -1329,13 +1326,12 @@ body::before {
   padding: 2px 8px;
   border-radius: 9999px;
   border: 1px solid;
-  transition: all 0.4s var(--ease-spring);
 }
 
 .coin-detail__change-pill--pos {
   color: var(--green);
-  border-color: rgba(0, 212, 168, 0.25);
-  background: rgba(0, 212, 168, 0.08);
+  border-color: rgba(34, 197, 94, 0.25);
+  background: rgba(34, 197, 94, 0.08);
 }
 
 .coin-detail__change-pill--neg {
@@ -1406,7 +1402,7 @@ body::before {
 
 .coin-detail__signal-badge--buy {
   color: var(--green);
-  border-color: rgba(0, 212, 168, 0.3);
+  border-color: rgba(34, 197, 94, 0.3);
 }
 
 .coin-detail__signal-badge--sell {
@@ -1469,7 +1465,7 @@ body::before {
   padding: 5px 0;
   font-size: 11px;
   font-variant-numeric: tabular-nums;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border);
   transition: background 0.3s var(--ease-spring);
 }
 
@@ -1548,6 +1544,20 @@ body::before {
   .coin-detail__chart {
     padding: 12px;
     height: 140px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 860px) {
+  .coin-detail__signal-column {
+    width: 200px;
+  }
+
+  .coin-detail__metrics-column {
+    padding: 12px;
+  }
+
+  .coin-detail__chart {
+    padding: 10px 12px 14px;
   }
 }
 

@@ -2,20 +2,22 @@ import { Line, Area, AreaChart, ResponsiveContainer, YAxis } from "recharts"
 
 interface PriceChartProps {
   data: Array<{ t: string; price: number }>
+  symbol?: string
 }
 
-export default function PriceChart({ data }: PriceChartProps) {
+export default function PriceChart({ data, symbol }: PriceChartProps) {
   if (!data || data.length < 2) {
-    return <div className="coin-detail__chart-empty">&mdash;</div>
+    return <div className="coin-detail__chart-empty">No price data</div>
   }
 
   const points = data.map(d => ({ t: d.t, p: d.price }))
   const first = data[0].price
   const last = data[data.length - 1].price
+  const trend = last >= first ? "uptrend" : "downtrend"
   const color = last >= first ? "var(--green)" : "var(--red)"
 
   return (
-    <div className="coin-detail__chart">
+    <div className="coin-detail__chart" role="img" aria-label={`Price chart for ${symbol ?? "asset"} showing ${trend}`}>
       <ResponsiveContainer width="100%" height="100%">
         <AreaChart data={points} margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
           <YAxis hide domain={["dataMin", "dataMax"]} />
