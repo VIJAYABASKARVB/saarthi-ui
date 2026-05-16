@@ -10,33 +10,51 @@ function Bar({ width, height = 12, style }: { width: string; height?: number; st
 
 function ScreenerSkeleton() {
   return (
-    <div className="screener">
-      <div className="screener-meta">
-        <Bar width="60px" height={10} />
+    <div>
+      <div className="screener-v2__toolbar">
+        <Bar width="80px" height={12} />
+        <Bar width="100px" height={12} />
       </div>
-      <div className="screener-table-wrap">
-        <table className="screener-table">
+      <div className="screener-v2__table-wrap">
+        <table className="screener-v2__table">
           <thead>
-            <tr className="screener-header-row">
-              {["100px", "140px", "70px", "90px", "110px"].map((w, i) => (
-                <th key={i} className="screener-header-cell">
-                  <Bar width={w} height={10} />
+            <tr className="screener-v2__header-row">
+              {[0, 1, 2, 3, 4].map((_, i) => (
+                <th key={i} className="screener-v2__header-cell" style={{ padding: "14px 16px" }}>
+                  <div className="skeleton-bar" style={{ width: "60%", height: 10 }} />
                 </th>
               ))}
             </tr>
           </thead>
           <tbody>
             {Array.from({ length: 5 }).map((_, r) => (
-              <tr key={r} className="screener-row">
-                {["100px", "140px", "70px", "90px", "80px"].map((w, c) => (
-                  <td key={c} className="screener-data-cell">
-                    <Bar width={w} height={11} />
+              <tr key={r} className="screener-v2__row">
+                <td className="screener-v2__cell">
+                  <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                    <div className="skeleton-bar" style={{ width: 28, height: 28, borderRadius: "50%" }} />
+                    <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                      <div className="skeleton-bar" style={{ width: 100, height: 12 }} />
+                      <div className="skeleton-bar" style={{ width: 50, height: 10 }} />
+                    </div>
+                  </div>
+                </td>
+                {[60, 70, 80, 80].map((w, i) => (
+                  <td key={i} className="screener-v2__cell screener-v2__cell--right">
+                    <div className="skeleton-bar" style={{ width: w, height: 12, marginLeft: "auto" }} />
                   </td>
                 ))}
               </tr>
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="screener-v2__pagination">
+        <div className="skeleton-bar" style={{ width: 120, height: 11 }} />
+        <div style={{ display: "flex", gap: 6 }}>
+          {[44, 32, 32, 44].map((w, i) => (
+            <div key={i} className="skeleton-bar" style={{ width: w, height: 28, borderRadius: 9999 }} />
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -87,45 +105,46 @@ function SignalsSkeleton() {
 
 function RegimeSkeleton() {
   return (
-    <div className="regime">
-      <div className="regime__meta">
-        <Bar width="200px" height={10} />
-      </div>
-      <div className="regime__hero">
-        <div style={{ marginBottom: 16, display: "flex", justifyContent: "center" }}>
-          <Bar width="220px" height={32} />
-        </div>
-        <div className="regime__confidence">
-          <div className="regime__confidence-track"><div className="skeleton-bar" style={{ width: "82%", height: "100%" }} /></div>
-          <div style={{ textAlign: "right", marginTop: 4 }}><Bar width="36px" height={12} style={{ display: "inline-block" }} /></div>
+    <div>
+      <div className="flex items-center justify-between px-6 py-2.5 border-b border-[var(--border)]">
+        <Bar width="140px" height={11} />
+        <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
+          <Bar width="60px" height={11} />
+          <div className="skeleton-bar" style={{ width: 44, height: 11, borderRadius: 9999 }} />
         </div>
       </div>
-      <div className="regime__metrics" style={{ gap: 24, justifyContent: "center" }}>
-        <Bar width="120px" height={11} />
-        <Bar width="120px" height={11} />
+      <div className="flex items-center gap-8 px-6 py-8">
+        <div className="flex flex-col gap-2">
+          <Bar width="40px" height={40} />
+          <Bar width="240px" height={56} />
+          <Bar width="80px" height={11} style={{ marginTop: 6 }} />
+        </div>
+        <div className="ml-auto">
+          <div className="skeleton-bar" style={{ width: 100, height: 100, borderRadius: "50%" }} />
+        </div>
       </div>
-      <div className="regime__transitions">
-        <div className="regime__transitions-header"><Bar width="180px" height={10} /></div>
-        {["Risk-on", "Risk-off", "Choppy"].map((_, i) => (
-          <div key={i} className="regime__transition-row">
-            <Bar width="80px" height={10} />
-            <div className="regime__transition-track"><div className="skeleton-bar" style={{ width: `${[82, 8, 10][i]}%`, height: "100%" }} /></div>
-            <Bar width="36px" height={10} />
-          </div>
-        ))}
-      </div>
-      <div className="regime__history">
-        <div className="regime__history-header"><Bar width="100px" height={10} /></div>
-        <div className="regime__history-strip">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <div key={i} className="regime__history-dot-group">
-              <div style={{ width: 10, height: 10, borderRadius: "50%", background: "rgba(255, 255, 255, 0.04)" }} />
-              <Bar width="20px" height={8} />
+      <div className="px-6 py-5 border-t border-[var(--border)]">
+        <Bar width="180px" height={10} style={{ marginBottom: 16 }} />
+        <div className="flex justify-center gap-6" style={{ height: 128 }}>
+          {[0, 1, 2].map(i => (
+            <div key={i} className="flex flex-col items-center gap-2" style={{ alignSelf: "flex-end" }}>
+              <Bar width="36px" height={12} />
+              <div className="skeleton-bar" style={{ width: 56, height: 64 + i * 16, borderRadius: 9999 }} />
+              <Bar width="60px" height={10} />
             </div>
           ))}
         </div>
       </div>
-      <div className="regime__narrative"><Bar width="100%" height={36} /></div>
+      <div className="px-6 py-5 border-t border-[var(--border)]">
+        <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
+          <Bar width="120px" height={10} />
+          <Bar width="120px" height={10} />
+        </div>
+        <div className="skeleton-bar" style={{ width: "100%", height: 32, borderRadius: 8 }} />
+      </div>
+      <div className="px-6 py-5 border-t border-[var(--border)]">
+        <Bar width="100%" height={36} />
+      </div>
     </div>
   )
 }
