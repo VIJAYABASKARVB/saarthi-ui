@@ -26,12 +26,12 @@ export default function AiInterpretation({ regimeState, confidence, durationDays
   const text = interpret(regimeState, confidence, durationDays)
 
   return (
-    <div className="regime__interpretation">
-      <div className="regime__interpretation-header">
-        <Sparkles size={14} strokeWidth={1.5} />
-        <span>AI Interpretation</span>
+    <div className="mr2__interp">
+      <div className="mr2__interp-header">
+        <Sparkles size={13} strokeWidth={1.5} />
+        <span>SAARTHI INTERPRETATION</span>
       </div>
-      <p className="regime__interpretation-text">{text}</p>
+      <p className="mr2__interp-text">{text}</p>
     </div>
   )
 }
