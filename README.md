@@ -1,11 +1,13 @@
 # Saarthi UI
 
+live-link:https://saarthi-ui-iota.vercel.app/
+
 Adaptive output renderer for Crypto Prism's NL-to-SQL crypto analytics agent.
 
 ## Quick start
 
 ```bash
-git clone <repo>
+git clone https://github.com/VIJAYABASKARVB/saarthi-ui.git
 cd saarthi-ui
 npm install
 npm run dev
