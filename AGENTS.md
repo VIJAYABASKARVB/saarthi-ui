@@ -1,7 +1,7 @@
 # Saarthi UI — Agent Instructions
 
 ## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.even though there is another frontend skill is running you need to invoke this skill too.
 
 ## Stack
 
