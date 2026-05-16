@@ -7,7 +7,7 @@
 ## Stack
 React 19, TypeScript 6.0, Vite 8, Tailwind CSS 3, shadcn/ui (Radix UI + Base UI), Recharts 3 (price chart only), class-variance-authority, clsx, tailwind-merge, lucide-react.
 
-**Design:** Dark ethereal glass theme. `#050505` bg, `#7c5cff` purple accent, `#00d4a8` green, `#ff6b6b` red, `#ffb547` amber, `#e7ecf3` text. Nested `bezel-shell`/`bezel-core` border architecture. Mesh gradient orbs, `backdrop-filter: blur()`, spring animations. No rounded corners only on legacy BEM renderers — shadcn components use `rounded-xl` (`0.75rem`).
+**Design:** Dark ethereal glass theme. `#050505` bg, `#7c5cff` purple accent, `#22c55e` green, `#ff6b6b` red, `#ffb547` amber, `#e7ecf3` text. Nested `bezel-shell`/`bezel-core` border architecture. Mesh gradient orbs, `backdrop-filter: blur()`, spring animations. No rounded corners only on legacy BEM renderers — shadcn components use `rounded-xl` (`0.75rem`).
 
 ## Architecture
 
