@@ -27,7 +27,7 @@ export default function CoinDetailRenderer({ response }: CoinDetailRendererProps
           <SignalCallout direction={latest_signal.direction} confidence={latest_signal.confidence} />
           <MetricsGrid metrics={metrics} on_chain={on_chain} />
         </div>
-        <PriceChart data={price_history} />
+        <PriceChart data={price_history} symbol={symbol} />
       </div>
     </div>
   )
