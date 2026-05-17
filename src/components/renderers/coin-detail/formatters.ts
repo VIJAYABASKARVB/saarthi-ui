@@ -22,10 +22,57 @@ export function formatInfinitePercent(n: number): string {
   return n.toFixed(1) + "%"
 }
 
-export function formatCompactCoin(n: number): string {
-  if (n === 0) return "< $1M"
-  if (n >= 1e12) return "$" + (n / 1e12).toFixed(2) + "T"
-  if (n >= 1e9) return "$" + (n / 1e9).toFixed(1) + "B"
-  if (n >= 1e6) return "$" + (n / 1e6).toFixed(1) + "M"
-  return "< $1M"
+export interface OHLC {
+  open: number
+  high: number
+  low: number
+  close: number
+}
+
+export function deriveOHLC(data: Array<{ t: string; price: number }>): OHLC | null {
+  if (!data || data.length < 2) return null
+  const prices = data.map(d => d.price)
+  return {
+    open: prices[0],
+    high: Math.max(...prices),
+    low: Math.min(...prices),
+    close: prices[prices.length - 1],
+  }
+}
+
+export function getAthContext(pct: number): string {
+  if (pct < 5) return "Near ATH"
+  if (pct < 20) return "Mid-range"
+  return "Far from ATH"
+}
+
+export function getAtlContext(pct: number): string {
+  if (pct < 100) return "Near ATL"
+  if (pct < 1000) return "Recovering"
+  return "Far from ATL"
+}
+
+export function getTurnoverTier(v: number): string {
+  if (v > 0.3) return "High"
+  if (v > 0.1) return "Medium"
+  return "Low"
+}
+
+export function getNetworkTier(v: number): string {
+  if (v >= 500000) return "Very High"
+  if (v >= 100000) return "High"
+  if (v >= 10000) return "Medium"
+  return "Low"
+}
+
+export function getHolderFlow(pct: number): string {
+  if (pct > 0.5) return "Accumulation"
+  if (pct < -0.5) return "Distribution"
+  return "Neutral"
+}
+
+export function getPrismTier(score: number): string {
+  if (score >= 70) return "Strong"
+  if (score >= 40) return "Moderate"
+  return "Weak"
 }

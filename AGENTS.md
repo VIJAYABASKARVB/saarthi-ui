@@ -1,11 +1,337 @@
 # Saarthi UI — Agent Instructions
 
-## Always Do First
-- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.even though when user uses some other frontend skills dont skip the frontend-design skill.consider both with priority
-
-
 ## Stack
 React 19, TypeScript 6.0, Vite 8, Tailwind CSS 3, shadcn/ui (Radix UI + Base UI), Recharts 3 (price chart only), class-variance-authority, clsx, tailwind-merge, lucide-react.
+
+# Frontend Website Rules
+
+## Always Do First
+- **Invoke the `frontend-design` skill** before writing any frontend code, every session, no exceptions.
+
+## Reference Images
+- If a reference image is provided: match layout, spacing, typography, and color exactly. Swap in placeholder content (images via `https://placehold.co/`, generic copy). Do not improve or add to the design.
+- If no reference image: design from scratch with high craft (see guardrails below).
+- Screenshot your output, compare against reference, fix mismatches, re-screenshot. Do at least 2 comparison rounds. Stop only when no visible differences remain or user says so.
+
+## Local Server
+- **Always serve on localhost** — never screenshot a `file:///` URL.
+- Start the dev server: `node serve.mjs` (serves the project root at `http://localhost:5173`)
+- `serve.mjs` lives in the project root. Start it in the background before taking any screenshots.
+- If the server is already running, do not start a second instance.
+
+## Screenshot + Reference Comparison Workflow
+
+### Screenshot Environment
+
+- Puppeteer browser cache:
+
+```txt
+C:/Users/ELCOT/.cache/puppeteer/
+```
+
+- Verify Puppeteer and browser availability before capturing screenshots:
+
+```bash
+npm list puppeteer
+npx puppeteer browsers list
+```
+
+Expected output should include:
+
+```txt
+puppeteer@...
+chrome@... installed
+```
+
+If browser is missing, install it:
+
+```bash
+npx puppeteer browsers install chrome
+```
+
+### Reference Images
+
+Store target screenshots inside:
+
+```txt
+/reference/
+```
+
+Example:
+
+```txt
+reference/
+ ├── coin-page.png
+ ├── screener-page.png
+ ├── news-page.png
+ └── regime-page.png
+```
+
+Reference images are the visual source of truth.
+
+If a reference image exists:
+
+- Match layout exactly
+- Match spacing exactly
+- Match typography exactly
+- Match colors/shadows/blur exactly
+- Do NOT redesign
+- Do NOT improve aesthetics
+- Do NOT add new sections
+
+---
+
+### Capture Current Implementation
+
+Always screenshot localhost:
+
+```bash
+node screenshot.mjs http://localhost:5173
+```
+
+Save screenshots inside:
+
+```txt
+/temporary screenshots/
+```
+
+---
+
+### Screenshot Naming Convention (Mandatory)
+
+Generated screenshots MUST inherit the reference filename.
+
+Reference:
+
+```txt
+reference/
+ └── coin-page.png
+```
+
+Iterations:
+
+```txt
+temporary screenshots/
+ ├── coin-page-1.png
+ ├── coin-page-2.png
+ ├── coin-page-3.png
+```
+
+Rules:
+
+First capture:
+
+```txt
+<reference-name>-1.png
+```
+
+Next captures:
+
+```txt
+<reference-name>-2.png
+<reference-name>-3.png
+...
+```
+
+Never overwrite older screenshots.
+
+Keep full iteration history.
+
+---
+
+### Latest Screenshot Rule (Mandatory)
+
+When multiple screenshots exist for the same page:
+
+Example:
+
+```txt
+temporary screenshots/
+ ├── coin-page-1.png
+ ├── coin-page-2.png
+ └── coin-page-3.png
+```
+
+ALWAYS compare against the newest screenshot only.
+
+Meaning:
+
+Compare:
+
+```txt
+reference/coin-page.png
+```
+
+against:
+
+```txt
+temporary screenshots/coin-page-3.png
+```
+
+NOT:
+
+```txt
+coin-page-1.png
+coin-page-2.png
+```
+
+The screenshot with the highest iteration number becomes the active implementation state.
+
+Older screenshots are history only.
+
+---
+
+### Mandatory Comparison Process
+
+After EVERY UI modification:
+
+1. Capture a new localhost screenshot.
+
+2. Identify the newest iteration:
+
+Example:
+
+```txt
+coin-page-4.png
+```
+
+3. Read BOTH:
+
+Reference:
+
+```txt
+/reference/<page>.png
+```
+
+Latest implementation:
+
+```txt
+/temporary screenshots/<page>-latest.png
+```
+
+4. Compare visually.
+
+Check:
+
+- spacing
+- margins
+- padding
+- typography size
+- font weight
+- line height
+- colors
+- shadows
+- blur intensity
+- glass opacity
+- gradients
+- border radius
+- chart dimensions
+- table spacing
+- alignment
+- responsive behavior
+- hover states
+- shell depth
+- image sizing
+
+---
+
+### Comparison Reporting Rules
+
+Never say:
+
+❌ "Looks close"
+
+❌ "Seems similar"
+
+❌ "Almost done"
+
+Always report measurable mismatches:
+
+✅ "Header ≈72px; reference ≈56px"
+
+✅ "Card gap 12px; should be ~24px"
+
+✅ "Glass blur stronger than reference"
+
+✅ "Accent purple too saturated"
+
+✅ "Border radius ~16px; reference ~10px"
+
+---
+
+### Iteration Loop (Required)
+
+Workflow:
+
+```txt
+Edit UI
+↓
+Capture screenshot
+↓
+Save:
+<reference-name>-N.png
+↓
+Compare:
+reference image
+VS
+latest screenshot only
+↓
+List mismatches
+↓
+Fix implementation
+↓
+Capture new screenshot
+↓
+Repeat
+```
+
+Minimum requirement:
+
+```txt
+2 compare → fix cycles
+```
+
+Stop only when:
+
+- visible mismatches ≈ zero
+OR
+- user explicitly approves
+
+Never stop after a single comparison pass.
+
+### Hard Rule
+
+If a reference image exists:
+
+- Match it as closely as possible.
+- Do NOT redesign.
+- Do NOT add sections.
+- Do NOT improve aesthetics.
+- Reproduce spacing, hierarchy, and visual behavior faithfully.
+
+## Output Defaults
+- Single `index.html` file, all styles inline, unless user says otherwise
+- Tailwind CSS via CDN: `<script src="https://cdn.tailwindcss.com"></script>`
+- Placeholder images: `https://placehold.co/WIDTHxHEIGHT`
+- Mobile-first responsive
+
+## Anti-Generic Guardrails
+- **Colors:** Never use default Tailwind palette (indigo-500, blue-600, etc.). Pick a custom brand color and derive from it.
+- **Shadows:** Never use flat `shadow-md`. Use layered, color-tinted shadows with low opacity.
+- **Typography:** Never use the same font for headings and body. Pair a display/serif with a clean sans. Apply tight tracking (`-0.03em`) on large headings, generous line-height (`1.7`) on body.
+- **Gradients:** Layer multiple radial gradients. Add grain/texture via SVG noise filter for depth.
+- **Animations:** Only animate `transform` and `opacity`. Never `transition-all`. Use spring-style easing.
+- **Interactive states:** Every clickable element needs hover, focus-visible, and active states. No exceptions.
+- **Images:** Add a gradient overlay (`bg-gradient-to-t from-black/60`) and a color treatment layer with `mix-blend-multiply`.
+- **Spacing:** Use intentional, consistent spacing tokens — not random Tailwind steps.
+- **Depth:** Surfaces should have a layering system (base → elevated → floating), not all sit at the same z-plane.
+
+## Hard Rules
+- Do not add sections, features, or content not in the reference
+- Do not "improve" a reference design — match it
+- Do not stop after one screenshot pass
+- Do not use `transition-all`
+- Do not use default Tailwind blue/indigo as primary color
 
 **Design:** Dark ethereal glass theme. `#050505` bg, `#7c5cff` purple accent, `#22c55e` green, `#ff6b6b` red, `#ffb547` amber, `#e7ecf3` text. Nested `bezel-shell`/`bezel-core` border architecture. Mesh gradient orbs, `backdrop-filter: blur()`, spring animations. No rounded corners only on legacy BEM renderers — shadcn components use `rounded-xl` (`0.75rem`).
 
