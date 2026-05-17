@@ -177,48 +177,54 @@ function NewsSkeleton() {
 function CoinDetailSkeleton() {
   return (
     <div className="coin-detail">
-      <div className="coin-detail__hero">
-        <div className="coin-detail__identity">
+      <div className="coin-detail__header">
+        <div className="coin-detail__header-left">
           <Bar width="50px" height={16} />
-          <Bar width="30px" height={10} />
+          <Bar width="100px" height={11} />
+          <Bar width="120px" height={20} />
+          <Bar width="60px" height={12} />
         </div>
-        <Bar width="140px" height={11} style={{ marginBottom: 6 }} />
-        <Bar width="180px" height={24} style={{ marginBottom: 8 }} />
-        <div className="coin-detail__changes">
+      </div>
+      <div className="coin-detail__toolbar">
+        <div className="coin-detail__toolbar-timeframes">
           {Array.from({ length: 4 }).map((_, i) => (
-            <Bar key={i} width="80px" height={11} />
+            <Bar key={i} width="32px" height={10} />
           ))}
         </div>
       </div>
-      <div className="coin-detail__body">
-        <div className="coin-detail__signal-column">
-          <Bar width="90px" height={9} style={{ marginBottom: 8 }} />
-          <Bar width="50px" height={16} style={{ marginBottom: 8 }} />
-          <div style={{ height: 6, background: "rgba(255, 255, 255, 0.04)", borderRadius: 9999 }} />
-          <Bar width="80px" height={10} style={{ marginTop: 4 }} />
+      <div className="coin-detail__ohlc-bar">
+        <Bar width="120px" height={10} />
+        <Bar width="60px" height={10} />
+        <Bar width="60px" height={10} />
+        <Bar width="60px" height={10} />
+        <Bar width="60px" height={10} />
+      </div>
+      <div className="coin-detail__chart-area">
+        <div className="coin-detail__drawing-tools">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <div key={i} className="skeleton-bar" style={{ width: 28, height: 28, borderRadius: 6 }} />
+          ))}
         </div>
-        <div className="coin-detail__metrics-column">
-          <div className="coin-detail__metrics-section">
-            <Bar width="50px" height={9} style={{ marginBottom: 6 }} />
-            {Array.from({ length: 4 }).map((_, i) => (
-              <div key={i} className="coin-detail__metric-row">
-                <Bar width="120px" height={11} />
-                <Bar width="60px" height={11} />
-              </div>
-            ))}
-          </div>
-          <div className="coin-detail__metrics-section">
-            <Bar width="60px" height={9} style={{ marginBottom: 6 }} />
-            {Array.from({ length: 3 }).map((_, i) => (
-              <div key={i} className="coin-detail__metric-row">
-                <Bar width="100px" height={11} />
-                <Bar width="50px" height={11} />
-              </div>
-            ))}
-          </div>
+        <div className="coin-detail__chart"><Bar width="100%" height={200} /></div>
+        <div className="coin-detail__analysis-panel">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} style={{ marginBottom: 12 }}>
+              <Bar width="60px" height={9} style={{ marginBottom: 6 }} />
+              <Bar width="100%" height={12} />
+              <Bar width="40px" height={9} style={{ marginTop: 4 }} />
+            </div>
+          ))}
         </div>
       </div>
-      <div className="coin-detail__chart"><Bar width="100%" height={100} /></div>
+      <div className="coin-detail__metrics-cards">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <div key={i} className="coin-detail__metric-card">
+            <Bar width="80px" height={10} style={{ marginBottom: 6 }} />
+            <Bar width="60px" height={16} style={{ marginBottom: 6 }} />
+            <Bar width="40px" height={10} />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

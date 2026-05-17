@@ -1,8 +1,13 @@
+import { useState } from "react"
 import type { SuccessEnvelope, CoinDetailData } from "../../types/api"
-import CoinHero from "./coin-detail/CoinHero"
-import SignalCallout from "./coin-detail/SignalCallout"
-import MetricsGrid from "./coin-detail/MetricsGrid"
+import ChartHeader from "./coin-detail/ChartHeader"
+import ChartToolbar from "./coin-detail/ChartToolbar"
+import OHLCBar from "./coin-detail/OHLCBar"
+import DrawingTools from "./coin-detail/DrawingTools"
 import PriceChart from "./coin-detail/PriceChart"
+import AnalysisPanel from "./coin-detail/AnalysisPanel"
+import MetricsCards from "./coin-detail/MetricsCards"
+import { deriveOHLC } from "./coin-detail/formatters"
 
 interface CoinDetailRendererProps {
   response: SuccessEnvelope<"coin_detail", CoinDetailData>
@@ -10,24 +15,23 @@ interface CoinDetailRendererProps {
 
 export default function CoinDetailRenderer({ response }: CoinDetailRendererProps) {
   const { data } = response
-  const { symbol, name, cmc_rank, price, market_cap, changes, metrics, on_chain, price_history, latest_signal } = data
+  const { symbol, name, price, changes, metrics, on_chain, price_history } = data
+  const [timeframe, setTimeframe] = useState("1D")
+
+  const ohlc = deriveOHLC(price_history)
 
   return (
-    <div className="bezel-shell animate-fade-up stagger-1">
+    <div className="coin-detail bezel-shell animate-fade-up stagger-1">
       <div className="bezel-core">
-        <CoinHero
-          symbol={symbol}
-          name={name}
-          cmc_rank={cmc_rank}
-          price={price}
-          market_cap={market_cap}
-          changes={changes}
-        />
-        <div className="coin-detail__body">
-          <SignalCallout direction={latest_signal.direction} confidence={latest_signal.confidence} />
-          <MetricsGrid metrics={metrics} on_chain={on_chain} />
+        <ChartHeader symbol={symbol} name={name} price={price} changes={changes} />
+        <ChartToolbar onTimeframeChange={setTimeframe} />
+        <OHLCBar symbol={symbol} exchange="CRYPTO" ohlc={ohlc} change24h={changes["24h"]} />
+        <div className="coin-detail__chart-area">
+          <DrawingTools />
+          <PriceChart data={price_history} symbol={symbol} timeframe={timeframe} />
+          <AnalysisPanel data={data} />
         </div>
-        <PriceChart data={price_history} symbol={symbol} />
+        <MetricsCards metrics={metrics} on_chain={on_chain} />
       </div>
     </div>
   )
