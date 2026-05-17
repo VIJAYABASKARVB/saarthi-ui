@@ -23,13 +23,13 @@ export default function MarketRegimeRenderer({ response }: MarketRegimeRendererP
   return (
     <div className="bezel-shell animate-fade-up stagger-1">
       <div className="bezel-core">
-        <div className="flex items-center justify-between px-6 py-2.5 border-b border-[var(--border)]">
-          <span className="font-mono text-[11px] text-[var(--text-mute)] tabular-nums">
-            {formatTimestamp(as_of)}
-          </span>
+        <div className="regime-section-reveal regime-stagger-0 flex items-center justify-between px-6 py-2.5 border-b border-[var(--border)]">
+        <span className="font-mono text-[11px] text-[var(--text-mute)] tabular-nums">
+          As of {formatTimestamp(as_of)}
+        </span>
           <div className="flex items-center gap-3">
             <span className="font-mono text-[11px] text-[var(--text-mute)] tabular-nums">
-              DUR {duration_days}D
+              {duration_days} days
             </span>
             <span className="flex items-center gap-1.5">
               <span
@@ -46,10 +46,18 @@ export default function MarketRegimeRenderer({ response }: MarketRegimeRendererP
           </div>
         </div>
 
-        <RegimeState state={regime_state} durationDays={duration_days} confidence={confidence} />
-        <TransitionPillars transitions={transitions} />
-        <HistoryStream history={history} />
-        <NarrativePanel narrative={narrative} />
+        <div className="regime-section-reveal regime-stagger-1">
+          <RegimeState state={regime_state} durationDays={duration_days} confidence={confidence} />
+        </div>
+        <div className="regime-section-reveal regime-stagger-2">
+          <TransitionPillars transitions={transitions} />
+        </div>
+        <div className="regime-section-reveal regime-stagger-3">
+          <HistoryStream history={history} />
+        </div>
+        <div className="regime-section-reveal regime-stagger-4">
+          <NarrativePanel narrative={narrative} />
+        </div>
       </div>
     </div>
   )

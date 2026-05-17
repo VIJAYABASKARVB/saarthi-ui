@@ -40,7 +40,7 @@ export default function RegimeState({ state, durationDays, confidence }: RegimeS
           className="font-mono text-xs tracking-wider mt-2"
           style={{ color: "var(--text-mute)" }}
         >
-          DUR {durationDays}D
+          {durationDays} days
         </span>
       </div>
       <div className="z-10 ml-auto">

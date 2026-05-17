@@ -26,7 +26,7 @@ export default function TransitionPillars({ transitions }: TransitionPillarsProp
           const isTop = p.val === maxVal
 
           return (
-            <div key={p.key} className="flex flex-col items-center gap-2">
+            <div key={p.key} className="pillar-hover flex flex-col items-center gap-2 cursor-pointer">
               <span
                 className="font-mono text-sm font-bold tabular-nums"
                 style={{ color: isTop ? p.color : "var(--text-dim)" }}

@@ -15,7 +15,18 @@ function formatDate(iso: string): string {
 export default function HistoryStream({ history }: HistoryStreamProps) {
   const gradId = useId()
 
-  if (history.length === 0) return null
+  if (history.length === 0) {
+    return (
+      <div className="px-6 py-5 border-t border-[var(--border)]">
+        <span className="font-mono text-xs text-[var(--text-mute)] uppercase tracking-wider block mb-2">
+          Regime History
+        </span>
+        <span className="font-mono text-xs text-[var(--text-dim)]">
+          No regime history available yet.
+        </span>
+      </div>
+    )
+  }
 
   const ordered = [...history].reverse()
   const totalDays = ordered.length
@@ -75,7 +86,7 @@ export default function HistoryStream({ history }: HistoryStreamProps) {
             return (
               <div
                 key={seg.state + i}
-                className="h-full transition-opacity duration-300 first:rounded-l-lg last:rounded-r-lg"
+                className="h-full history-segment-hover first:rounded-l-lg last:rounded-r-lg"
                 style={{ width: widthPct + "%", background: segColor, opacity: 0.35 }}
                 title={seg.state + ": " + seg.days + "d"}
               />

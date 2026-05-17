@@ -3,7 +3,18 @@ interface NarrativePanelProps {
 }
 
 export default function NarrativePanel({ narrative }: NarrativePanelProps) {
-  if (!narrative) return null
+  if (!narrative) {
+    return (
+      <div className="px-6 py-5 border-t border-[var(--border)]">
+        <span className="font-mono text-xs text-[var(--text-mute)] uppercase tracking-wider block mb-2">
+          Market Narrative
+        </span>
+        <span className="font-mono text-xs text-[var(--text-dim)]">
+          No narrative analysis available for this regime.
+        </span>
+      </div>
+    )
+  }
 
   return (
     <div className="px-6 py-5 border-t border-[var(--border)] relative">
