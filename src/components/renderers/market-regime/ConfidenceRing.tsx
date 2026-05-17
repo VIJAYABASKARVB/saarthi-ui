@@ -14,7 +14,8 @@ export default function ConfidenceRing({ value, color }: ConfidenceRingProps) {
 
   return (
     <div
-      className="relative inline-flex items-center justify-center"
+      className="confidence-glow-pulse relative inline-flex items-center justify-center"
+      style={{ "--ring-glow-color": color } as React.CSSProperties}
       role="progressbar"
       aria-valuenow={Math.round(pct)}
       aria-valuemin={0}
@@ -52,6 +53,12 @@ export default function ConfidenceRing({ value, color }: ConfidenceRingProps) {
         style={{ color }}
       >
         {Math.round(pct)}%
+      </span>
+      <span
+        className="absolute font-mono text-[9px] uppercase tracking-widest"
+        style={{ color: "var(--text-mute)", bottom: -12 }}
+      >
+        Confidence
       </span>
     </div>
   )

@@ -189,6 +189,48 @@ body::before {
 .stagger-5 { animation-delay: 320ms; }
 .stagger-6 { animation-delay: 400ms; }
 
+/* Regime section stagger delays */
+.regime-stagger-0 { animation-delay: 0ms; }
+.regime-stagger-1 { animation-delay: 120ms; }
+.regime-stagger-2 { animation-delay: 240ms; }
+.regime-stagger-3 { animation-delay: 360ms; }
+.regime-stagger-4 { animation-delay: 480ms; }
+
+/* Regime section reveal — fade-up with shorter duration */
+.regime-section-reveal {
+  opacity: 0;
+  animation: fade-up-enter 0.5s var(--ease-spring) both;
+}
+
+/* ConfidenceRing glow pulse */
+@keyframes confidence-glow {
+  0%, 100% { filter: drop-shadow(0 0 4px var(--ring-glow-color, rgba(124, 92, 255, 0.15))); }
+  50% { filter: drop-shadow(0 0 12px var(--ring-glow-color, rgba(124, 92, 255, 0.3))); }
+}
+
+.confidence-glow-pulse {
+  animation: confidence-glow 3s var(--ease-smooth) infinite;
+}
+
+/* Pillar hover lift */
+.pillar-hover {
+  transition: transform 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring);
+}
+
+.pillar-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* History segment hover glow */
+.history-segment-hover {
+  transition: opacity 0.2s var(--ease-spring), filter 0.2s var(--ease-spring);
+}
+
+.history-segment-hover:hover {
+  opacity: 1 !important;
+  filter: brightness(1.2);
+}
+
 /* Magnetic button hover physics */
 .magnetic-btn {
   transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
@@ -1971,5 +2013,17 @@ body::before {
     --input: rgba(255, 255, 255, 0.06);
     --ring: #7c5cff;
     --radius: 0.75rem;
+  }
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
   }
 }
